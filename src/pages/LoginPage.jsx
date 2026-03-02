@@ -1,31 +1,23 @@
 import React, { useState } from "react";
-import {
-  Box,
-  Card,
-  CardContent,
-  TextField,
-  Typography,
-  Button,
-  Divider,
-  IconButton,
-  InputAdornment,
-  Link,
-  Stack,
-  Container,
-} from "@mui/material";
+import Box from '@mui/material/Box';
+import Card from "@mui/material";
+import CardContent from "@mui/material";
+import TextField from "@mui/material";
+import Typography from "@mui/material";
+import Button from "@mui/material";
+import IconButton from "@mui/material";
+import InputAdornment from "@mui/material";
+import Link from "@mui/material";
+import Stack from "@mui/material";
+import Container from "@mui/material";
+import {Visibility} from "@mui/icons-material";
+import { VisibilityOff } from "@mui/icons-material";
+import { Lock } from "@mui/icons-material";
 
-import {
-  Visibility,
-  VisibilityOff,
-  Lock,
-  Email,
-  Person,
-  Security,
-} from "@mui/icons-material";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
-  // const [showConfirm, setShowConfirm] = useState(false);
+ 
 
   return (
     <Box
@@ -53,17 +45,7 @@ const LoginPage = () => {
             </Box>
 
             <Stack spacing={2} mt={2}>
-              <TextField
-                label="Full Name"
-                fullWidth
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <Person />
-                    </InputAdornment>
-                  ),
-                }}
-              />
+              
 
               <TextField
                 label="Email Address"
