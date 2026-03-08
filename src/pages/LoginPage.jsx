@@ -1,22 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import Box from '@mui/material/Box';
-import Card from "@mui/material";
-import CardContent from "@mui/material";
-import TextField from "@mui/material";
-import Typography from "@mui/material";
-import Button from "@mui/material";
-import IconButton from "@mui/material";
-import InputAdornment from "@mui/material";
-import Link from "@mui/material";
-import Stack from "@mui/material";
-import Container from "@mui/material";
-import {Visibility} from "@mui/icons-material";
-import { VisibilityOff } from "@mui/icons-material";
-import { Lock } from "@mui/icons-material";
+import { Card } from "@mui/material";
+import { CardContent } from "@mui/material";
+import { TextField } from "@mui/material";
+import { Typography } from "@mui/material";
+import { Button } from "@mui/material";
+import { Stack } from "@mui/material";
+import { Container } from "@mui/material";
 
 
-const LoginPage = () => {
-  const [showPassword, setShowPassword] = useState(false);
+function LoginPage(){
  
 
   return (
@@ -40,7 +33,7 @@ const LoginPage = () => {
           <CardContent>
             <Box textAlign="center" mb={3}>
               <Typography variant="h5" fontWeight="bold">
-                Register
+                Login
               </Typography>
             </Box>
 
@@ -51,35 +44,12 @@ const LoginPage = () => {
                 label="Email Address"
                 fullWidth
                 type="email"
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <Email />
-                    </InputAdornment>
-                  ),
-                }}
+                
               />
 
               <TextField
                 label="Password"
                 fullWidth
-                type={showPassword ? "text" : "password"}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <Lock />
-                    </InputAdornment>
-                  ),
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        onClick={() => setShowPassword(!showPassword)}
-                      >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
               />
 
              
@@ -94,7 +64,7 @@ const LoginPage = () => {
                 }}
                 fullWidth
               >
-                Create Account →
+                Login →
               </Button>
             </Stack>
 
@@ -109,5 +79,6 @@ const LoginPage = () => {
     </Box>
   );
 };
+
 
 export default LoginPage;

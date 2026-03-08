@@ -1,26 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
+import Box from "@mui/material/Box";
+import { Card } from "@mui/material";
+import { CardContent } from "@mui/material";
+import { TextField } from "@mui/material";
+import { Typography } from "@mui/material";
+import { Button } from "@mui/material";
+import { Link } from "@mui/material";
+import { Stack } from "@mui/material";
+import { Container } from "@mui/material";
 import LoginPage from "./LoginPage";
 
-import Box from '@mui/material/Box';
-import Card from "@mui/material";
-import CardContent from "@mui/material";
-import TextField from "@mui/material";
-import Typography from "@mui/material";
-import Button from "@mui/material";
-import IconButton from "@mui/material";
-import InputAdornment from "@mui/material";
-import Link from "@mui/material";
-import Stack from "@mui/material";
-import Container from "@mui/material";
-import {Visibility} from "@mui/icons-material";
-import { VisibilityOff } from "@mui/icons-material";
-import { Lock } from "@mui/icons-material";
-import { Person } from "@mui/icons-material";
-
-
-const RegisterPage = () => {
-  const [showPassword, setShowPassword] = useState(false);
-
+function RegisterPage() {
   return (
     <Box
       sx={{
@@ -50,51 +40,18 @@ const RegisterPage = () => {
               <TextField
                 label="Full Name"
                 fullWidth
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <Person />
-                    </InputAdornment>
-                  ),
-                }}
               />
 
               <TextField
                 label="Email Address"
                 fullWidth
                 type="email"
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <Email />
-                    </InputAdornment>
-                  ),
-                }}
               />
 
               <TextField
                 label="Password"
                 fullWidth
-                type={showPassword ? "text" : "password"}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <Lock />
-                    </InputAdornment>
-                  ),
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        onClick={() => setShowPassword(!showPassword)}
-                      >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
               />
-
-
 
               <Button
                 variant="contained"
@@ -113,18 +70,16 @@ const RegisterPage = () => {
 
             <Box my={3}></Box>
 
-            <Stack direction="row" spacing={2}>
-              
-            </Stack>
+            <Stack direction="row" spacing={2}></Stack>
 
-             <Box textAlign="center" mt={3}>
+            <Box textAlign="center" mt={3}>
               <Typography variant="body2">
                 Already have an account?{" "}
-                <Link href="#" underline="hover">
+                <Link href={ LoginPage } underline="hover">
                   Log in here
                 </Link>
               </Typography>
-            </Box> 
+            </Box>
 
             <Box textAlign="center" mt={4}></Box>
           </CardContent>
@@ -132,6 +87,6 @@ const RegisterPage = () => {
       </Container>
     </Box>
   );
-};
+}
 
 export default RegisterPage;
