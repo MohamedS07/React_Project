@@ -1,6 +1,16 @@
 import React from "react";
-import { Box, Typography, List, ListItem, ListItemText, ListItemIcon } from "@mui/material";
-import { Dashboard, Search, AccountBalanceWallet, Person } from "@mui/icons-material";
+import { Box } from "@mui/material";
+import { Typography } from "@mui/material";
+import { List } from "@mui/material";
+import { ListItem } from "@mui/material";
+import { ListItemText } from "@mui/material";
+import { ListItemIcon } from "@mui/material";
+import { Dashboard } from "@mui/icons-material";
+import { Search } from "@mui/icons-material";
+import { AccountBalanceWallet } from "@mui/icons-material";
+import { Person } from "@mui/icons-material";
+import { Link } from "react-router-dom";
+
 
 function SideBar() {
     return (
@@ -19,11 +29,11 @@ function SideBar() {
             <List>
                 <ListItem button>
                     <ListItemIcon><Dashboard /></ListItemIcon>
-                    <ListItemText primary="Dashboard" />
+                    <Link to="/dashboard">Dashboard</Link>
                 </ListItem>
                 <ListItem button>
                     <ListItemIcon><Search /></ListItemIcon>
-                    <ListItemText primary="Search Stock" />
+                    <Link to="/stock">Search Stocks</Link>
                 </ListItem>
                 <ListItem button>
                     <ListItemIcon><AccountBalanceWallet /></ListItemIcon>

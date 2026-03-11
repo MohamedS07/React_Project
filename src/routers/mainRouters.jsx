@@ -1,13 +1,19 @@
 import Login from "../pages/LoginPage"
-import MainLayout from "../layout/MainLayout"
+import DashBoardPage from "../pages/DashBoardPage"
+import SearchStocksPage from "../pages/SearchStocksPage"
+import SideBar from "../components/dashboard/Sidebar"
 
 const mainRouter = {
     path: "/",
-    element:<MainLayout/>,
+    element:<SideBar/>,
     children: [
         {
-        path: "/login",
-        element: <LoginPage/>
+        path: "/dashboard",
+        element: <DashBoardPage/>
+        },
+        {
+            path: "/stock",
+            element:<SearchStocksPage/>
         }
     ]
 }

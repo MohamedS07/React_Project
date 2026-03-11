@@ -6,11 +6,20 @@ import MyPortfolioPage from './pages/MyPortfolioPage'
 import ProfilePage from './pages/ProfilePage'
 import './App.css'
 import "./Dashboard.css"
+import { RouterProvider } from 'react-router-dom'
+import router from './routers/router'
 
 function App() {
 
   return (
-    <RegisterPage />
+    <>
+      <DashBoardPage>
+        
+          <RouterProvider router={router}/>
+        
+      </DashBoardPage>
+      
+    </>
   )
 }
 
