@@ -9,8 +9,8 @@ import { Stack } from "@mui/material";
 import { Container } from "@mui/material";
 
 
-function LoginPage(){
- 
+function LoginPage() {
+
 
   return (
     <Box
@@ -38,13 +38,13 @@ function LoginPage(){
             </Box>
 
             <Stack spacing={2} mt={2}>
-              
+
 
               <TextField
                 label="Email Address"
                 fullWidth
                 type="email"
-                
+
               />
 
               <TextField
@@ -52,7 +52,7 @@ function LoginPage(){
                 fullWidth
               />
 
-             
+
               <Button
                 variant="contained"
                 size="large"
@@ -70,7 +70,7 @@ function LoginPage(){
 
             <Box my={3}></Box>
 
-            
+
 
             <Box textAlign="center" mt={4}></Box>
           </CardContent>
@@ -78,7 +78,6 @@ function LoginPage(){
       </Container>
     </Box>
   );
-};
-
+}
 
 export default LoginPage;

@@ -1,13 +1,13 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import { Card } from "@mui/material";
-import { CardContent } from "@mui/material";
 import { TextField } from "@mui/material";
+import { CardContent } from "@mui/material";
 import { Typography } from "@mui/material";
 import { Button } from "@mui/material";
-import { Link } from "@mui/material";
 import { Stack } from "@mui/material";
 import { Container } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 import LoginPage from "./LoginPage";
 
 function RegisterPage() {
@@ -75,9 +75,9 @@ function RegisterPage() {
             <Box textAlign="center" mt={3}>
               <Typography variant="body2">
                 Already have an account?{" "}
-                <Link href={ LoginPage } underline="hover">
+                <RouterLink to="/login" style={{ textDecoration: 'none', color: '#1976d2' }}>
                   Log in here
-                </Link>
+                </RouterLink>
               </Typography>
             </Box>
 

@@ -27,19 +27,19 @@ function SideBar() {
             </Box>
 
             <List>
-                <ListItem button>
+                <ListItem button component={Link} to="/">
                     <ListItemIcon><Dashboard /></ListItemIcon>
-                    <Link to="/dashboard">Dashboard</Link>
+                    <ListItemText primary="Dashboard" />
                 </ListItem>
-                <ListItem button>
+                <ListItem button component={Link} to="/search">
                     <ListItemIcon><Search /></ListItemIcon>
-                    <Link to="/stock">Search Stocks</Link>
+                    <ListItemText primary="Search Stocks" />
                 </ListItem>
-                <ListItem button>
+                <ListItem button component={Link} to="/portfolio">
                     <ListItemIcon><AccountBalanceWallet /></ListItemIcon>
                     <ListItemText primary="My Portfolio" />
                 </ListItem>
-                <ListItem button>
+                <ListItem button component={Link} to="/profile">
                     <ListItemIcon><Person /></ListItemIcon>
                     <ListItemText primary="Profile" />
                 </ListItem>

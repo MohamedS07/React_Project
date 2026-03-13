@@ -1,22 +1,25 @@
-import Login from "../pages/LoginPage"
-import DashBoardPage from "../pages/DashBoardPage"
-import SearchStocksPage from "../pages/SearchStocksPage"
-import SideBar from "../components/dashboard/Sidebar"
+import DashBoardPage from '../pages/DashBoardPage';
+import SearchStocksPage from '../pages/SearchStocksPage';
+import MyPortfolioPage from '../pages/MyPortfolioPage';
+import ProfilePage from '../pages/ProfilePage';
 
-const mainRouter = {
-    path: "/",
-    element:<SideBar/>,
-    children: [
-        {
-        path: "/dashboard",
-        element: <DashBoardPage/>
-        },
-        {
-            path: "/stock",
-            element:<SearchStocksPage/>
-        }
-    ]
-}
+const mainRouters = [
+    {
+        index: true,
+        element: <DashBoardPage />
+    },
+    {
+        path: "search",
+        element: <SearchStocksPage />
+    },
+    {
+        path: "portfolio",
+        element: <MyPortfolioPage />
+    },
+    {
+        path: "profile",
+        element: <ProfilePage />
+    }
+];
 
-export default mainRouter
-
+export default mainRouters;
