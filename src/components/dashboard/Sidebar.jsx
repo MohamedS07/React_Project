@@ -39,6 +39,10 @@ function SideBar() {
                     <ListItemIcon><AccountBalanceWallet /></ListItemIcon>
                     <ListItemText primary="My Portfolio" />
                 </ListItem>
+                <ListItem button component={Link} to="/ai-insights">
+                    <ListItemIcon><Search /></ListItemIcon>
+                    <ListItemText primary="AI Insights" />
+                </ListItem>
                 <ListItem button component={Link} to="/profile">
                     <ListItemIcon><Person /></ListItemIcon>
                     <ListItemText primary="Profile" />

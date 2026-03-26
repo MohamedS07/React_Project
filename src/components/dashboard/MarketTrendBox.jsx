@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card} from '@mui/material';
 import { Typography } from '@mui/material';
+import MarketTrendChart from './MarketTrendChart';
 
 function MarketTrendBox() {
     return (
@@ -15,6 +16,7 @@ function MarketTrendBox() {
         }}>
             <Typography variant="h6" fontWeight="bold" sx={{ color: '#1e293b', mb: 2 }}>
                 Market Trend
+                <MarketTrendChart/>
             </Typography>
             
         </Card>
