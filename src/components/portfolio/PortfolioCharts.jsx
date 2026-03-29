@@ -1,30 +1,93 @@
 import React from 'react';
 import { Grid, Card, Box, Typography } from '@mui/material';
+import Chart from 'react-apexcharts';
 
 function PortfolioCharts() {
+    const chartOptions = {
+        labels: ['', '', '', '', ''],
+        colors: ['#7c3aed', '#8b5cf6', '#a78bfa', '#c4b5fd', '#ede9fe'], // Violet Shades
+        chart: {
+            type: 'donut',
+        },
+        stroke: {
+            show: false
+        },
+        dataLabels: {
+            enabled: false
+        },
+        legend: {
+            position: 'bottom',
+            fontFamily: 'Poppins, sans-serif',
+            fontWeight: 500,
+            labels: {
+                colors: '#64748b'
+            },
+            markers: {
+                radius: 12,
+                size: 6
+            }
+        },
+        plotOptions: {
+            pie: {
+                donut: {
+                    size: '75%',
+                    labels: {
+                        show: true,
+                        total: {
+                            show: true,
+                            label: 'Total Value',
+                            formatter: () => '$',
+                            style: {
+                                fontSize: '14px',
+                                fontWeight: 600,
+                                fontFamily: 'Poppins, sans-serif',
+                                color: '#64748b'
+                            }
+                        },
+                        value: {
+                            show: true,
+                            fontSize: '24px',
+                            fontWeight: 800,
+                            fontFamily: 'Poppins, sans-serif',
+                            color: '#1e293b',
+                            offsetY: 5
+                        }
+                    }
+                }
+            }
+        },
+        tooltip: {
+            enabled: true,
+            theme: 'light'
+        }
+    };
+
+    const chartSeries = [35, 25, 20, 12, 8];
+
     return (
         <Grid container spacing={3}>
-            <Grid item xs={12} md={8}>
-                <Card sx={{ borderRadius: '16px', border: '1px solid #f1f5f9', boxShadow: 'none', p: 3, height: '400px', display: 'flex', flexDirection: 'column' }}>
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 3 }}>
-                        <Box>
-                            <Typography variant="h6" fontWeight="700">Portfolio Growth</Typography>
-                            
-                        </Box>
-                       
-                    </Box>
-                </Card>
-            </Grid>
-
-            
             <Grid item xs={12} md={4}>
-                <Card sx={{ borderRadius: '16px', border: '1px solid #f1f5f9', boxShadow: 'none', p: 3, height: '400px', display: 'flex', flexDirection: 'column' }}>
-                    <Typography variant="h6" fontWeight="700" sx={{ mb: 1 }}>Asset Allocation</Typography>
+                <Card sx={{ 
+                    borderRadius: '24px', 
+                    border: '1px solid var(--border-light)', 
+                    boxShadow: '0 4px 6px -1px var(--neutral-100)', 
+                    p: 4, 
+                    height: '450px', 
+                    display: 'flex', 
+                    flexDirection: 'column',
+                    bgcolor: 'white'
+                }}>
+                    <Typography variant="h6" fontWeight="800" sx={{ mb: 0.5, color: 'var(--text-primary)' }}>Asset Allocation</Typography>
+                    <Typography variant="body2" sx={{ mb: 3, color: 'var(--text-secondary)' }}>Distribution across holdings</Typography>
                     
-
-                    
-
-                    
+                    <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <Chart
+                            options={chartOptions}
+                            series={chartSeries}
+                            type="donut"
+                            width="100%"
+                        />
+                    </Box>
                 </Card>
             </Grid>
         </Grid>

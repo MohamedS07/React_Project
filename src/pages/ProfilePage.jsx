@@ -6,23 +6,31 @@ import ProfileDetails from '../components/profile/ProfileDetails';
 
 function ProfilePage() {
     return (
-        <Box sx={{ p: 3 }}>
-            <SearchBar />
+        <Box sx={{ 
+            bgcolor: 'var(--bg-main)', 
+            minHeight: '100vh',
+            pb: 8
+        }}>
+            <Box sx={{ p: 4 }}>
+                <SearchBar />
+            </Box>
 
-            <Container maxWidth="xl" sx={{ mt: 2 }}>
-                <Typography variant="h5" fontWeight="bold" sx={{ mb: 3 }}>
-                    Profile Settings
-                </Typography>
+            <Container maxWidth="sm" sx={{ mt: 2 }}>
+                <Box sx={{ mb: 6, textAlign: 'center' }}>
+                    <Typography variant="h4" fontWeight="800" sx={{ color: 'var(--text-primary)' }}>
+                        Profile Settings
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: 'var(--text-secondary)', mt: 1 }}>
+                        Manage your account and preferences
+                    </Typography>
+                </Box>
 
                 <ProfileHeader />
                 <ProfileDetails />
-
-                <Box sx={{ mt: 6, mb: 4, textAlign: 'center' }}>
-                    <div style={{ width: '200px', height: '12px', background: '#f8fafc', borderRadius: '4px', margin: '0 auto' }}></div>
-                </Box>
             </Container>
         </Box>
     );
 }
 
 export default ProfilePage;
+
