@@ -7,8 +7,8 @@ function TopMoversBox() {
     <Card
       sx={{
         borderRadius: "16px",
-        minHeight: 360,
-        width: 330,
+        minHeight: 530,
+        width: 430,
         p: 3,
         boxShadow: "none",
         border: "1px solid #e2e8f0",

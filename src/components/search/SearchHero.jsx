@@ -7,32 +7,40 @@ import {Box} from '@mui/material';
 function SearchHero() {
     return (
         <Card sx={{
-            p: 2,
+            p: 1.5,
             display: 'flex',
             gap: 2,
             borderRadius: '16px',
-            boxShadow: 'none',
-            border: '1px solid #e2e8f0',
+            boxShadow: '0 4px 6px -1px var(--neutral-100)',
+            border: '1px solid var(--border-light)',
             mb: 3
         }}>
             <TextField
                 fullWidth
-                placeholder="Enter stock"
+                placeholder="Search stocks (e.g., AAPL, GOOGL)"
                 variant="outlined"
                 size="small"
-                sx={{ bgcolor: '#f8fafc', borderRadius: '8px', '& fieldset': { border: 'none' } }}
+                sx={{ 
+                    bgcolor: 'white', 
+                    borderRadius: '10px', 
+                    '& fieldset': { border: 'none' },
+                    '& .MuiInputBase-root': { height: '44px' } 
+                }}
             />
             <Button
                 variant="contained"
                 sx={{
-                    bgcolor: '#3b82f6',
-                    borderRadius: '8px',
+                    bgcolor: 'var(--primary-600)',
+                    borderRadius: '10px',
                     px: 4,
+                    height: '44px',
+                    fontWeight: 600,
                     textTransform: 'none',
-                    '&:hover': { bgcolor: '#2563eb' }
+                    '&:hover': { bgcolor: 'var(--primary-700)', transform: 'translateY(-1px)' },
+                    transition: 'all 0.2s'
                 }}
             >
-                Analyze Stock
+                Analyze
             </Button>
         </Card>
     );

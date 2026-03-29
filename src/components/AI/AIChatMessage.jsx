@@ -8,15 +8,19 @@ function AIChatMessage({ type, text }) {
   return (
     <Box
       sx={{
-        maxWidth: "70%",
+        maxWidth: "80%",
         alignSelf: isUser ? "flex-end" : "flex-start",
-        bgcolor: isUser ? "#2563eb" : "#f1f5f9",
-        color: isUser ? "white" : "black",
+        bgcolor: isUser ? "var(--primary-600)" : "white",
+        color: isUser ? "white" : "var(--text-primary)",
+        boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
+        border: !isUser ? '1px solid var(--border-light)' : 'none',
         p: 2,
-        borderRadius: 3
+        px: 2.5,
+        borderRadius: isUser ? '20px 20px 4px 20px' : '20px 20px 20px 4px',
+        transition: 'all 0.2s',
       }}
     >
-      <Typography variant="body2">
+      <Typography variant="body2" sx={{ lineHeight: 1.6, fontWeight: isUser ? 500 : 400 }}>
         {text}
       </Typography>
     </Box>

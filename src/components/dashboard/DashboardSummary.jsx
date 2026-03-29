@@ -8,26 +8,31 @@ function DashboardSummary({ title, value, icon, trend }) {
     <Grid item xs={12} sm={6} md={3}>
       <Card sx={{
         borderRadius: '16px',
-        height: 120,
-        minWidth: '220px',
+        height: 170,
+        minWidth: '270px',
         flex: 1,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
         p: '24px',
-        boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
-        border: '1px solid #f1f5f9'
+        boxShadow: '0 4px 6px -1px var(--neutral-200), 0 2px 4px -2px var(--neutral-100)',
+        border: '1px solid var(--border-light)',
+        transition: 'transform 0.2s, box-shadow 0.2s',
+        '&:hover': {
+          transform: 'translateY(-2px)',
+          boxShadow: '0 10px 15px -3px var(--neutral-200)',
+        }
       }}>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
           <Box sx={{
-            width: '32px',
-            height: '32px',
-            background: '#f8fafc',
-            borderRadius: '8px',
+            width: '36px',
+            height: '36px',
+            background: 'linear-gradient(135deg, var(--primary-50), var(--primary-100))',
+            borderRadius: '10px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            color: '#64748b'
+            color: 'var(--primary-600)'
           }}>
             {icon}
           </Box>
@@ -35,19 +40,23 @@ function DashboardSummary({ title, value, icon, trend }) {
             display: 'flex',
             alignItems: 'center',
             gap: 0.5,
-            color: trend?.startsWith('+') ? '#10b981' : '#ef4444',
+            color: trend?.startsWith('+') ? '#10b981' : '#f43f5e',
             fontSize: '12px',
-            fontWeight: 600
+            fontWeight: 700,
+            bgcolor: trend?.startsWith('+') ? '#dcfce7' : '#fee2e2',
+            px: 1,
+            py: 0.5,
+            borderRadius: '6px'
           }}>
             {trend}
           </Box>
         </Box>
 
         <div>
-          <Typography variant="body2" sx={{ color: '#64748b', mb: 0.5, fontWeight: 500 }}>
+          <Typography variant="body2" sx={{ color: 'var(--text-secondary)', mb: 0.5, fontWeight: 500 }}>
             {title}
           </Typography>
-          <Typography variant="h5" sx={{ fontWeight: 700, color: '#1e293b' }}>
+          <Typography variant="h5" sx={{ fontWeight: 800, color: 'var(--text-primary)' }}>
             {value}
           </Typography>
         </div>

@@ -18,35 +18,54 @@ function SideBar() {
             sx={{
                 width: 240,
                 height: "100vh",
-                bgcolor: "white",
-                borderRight: "1px solid #ddd",
+                bgcolor: "var(--bg-sidebar)",
+                borderRight: "1px solid var(--border-light)",
+                display: "flex",
+                flexDirection: "column",
             }}
         >
-            <Box sx={{ p: 2 }}>
-                <Typography variant="h6" fontWeight="bold">Menu</Typography>
+            <Box sx={{ p: 3, borderBottom: '1px solid var(--border-light)' }}>
+                <Typography variant="h5" fontWeight="800" sx={{ color: "var(--primary-700)", letterSpacing: '-0.5px' }}>
+                    STOCK-IT
+                </Typography>
             </Box>
 
-            <List>
-                <ListItem button component={Link} to="/">
-                    <ListItemIcon><Dashboard /></ListItemIcon>
-                    <ListItemText primary="Dashboard" />
-                </ListItem>
-                <ListItem button component={Link} to="/search">
-                    <ListItemIcon><Search /></ListItemIcon>
-                    <ListItemText primary="Search Stocks" />
-                </ListItem>
-                <ListItem button component={Link} to="/portfolio">
-                    <ListItemIcon><AccountBalanceWallet /></ListItemIcon>
-                    <ListItemText primary="My Portfolio" />
-                </ListItem>
-                <ListItem button component={Link} to="/ai-insights">
-                    <ListItemIcon><Search /></ListItemIcon>
-                    <ListItemText primary="AI Insights" />
-                </ListItem>
-                <ListItem button component={Link} to="/profile">
-                    <ListItemIcon><Person /></ListItemIcon>
-                    <ListItemText primary="Profile" />
-                </ListItem>
+            <List sx={{ px: 1, py: 2 }}>
+                {[
+                    { text: "Dashboard", icon: <Dashboard />, to: "/" },
+                    { text: "Search Stocks", icon: <Search />, to: "/search" },
+                    { text: "My Portfolio", icon: <AccountBalanceWallet />, to: "/portfolio" },
+                    { text: "AI Insights", icon: <Search />, to: "/ai-insights" },
+                    { text: "Profile", icon: <Person />, to: "/profile" },
+                ].map((item) => (
+                    <ListItem 
+                        button 
+                        key={item.text} 
+                        component={Link} 
+                        to={item.to}
+                        sx={{
+                            borderRadius: '12px',
+                            mb: 0.5,
+                            transition: 'all 0.2s',
+                            '&:hover': {
+                                bgcolor: 'var(--primary-50)',
+                                color: 'var(--primary-700)',
+                                '& .MuiListItemIcon-root': { color: 'var(--primary-700)' }
+                            },
+                        }}
+                    >
+                        <ListItemIcon sx={{ minWidth: 40, color: 'var(--neutral-500)' }}>
+                            {item.icon}
+                        </ListItemIcon>
+                        <ListItemText 
+                            primary={item.text} 
+                            primaryTypographyProps={{ 
+                                fontWeight: 500,
+                                fontSize: '0.9rem'
+                            }} 
+                        />
+                    </ListItem>
+                ))}
             </List>
         </Box>
     );

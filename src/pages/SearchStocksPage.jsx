@@ -8,7 +8,7 @@ import { Box, Typography } from "@mui/material";
 function SearchStocksPage() {
   return (
     <Box sx={{ p: 3 }}>
-      <SearchBar />
+      
 
       <Typography variant="h5" fontWeight="bold" mb={3}>
         Stock Search

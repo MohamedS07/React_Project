@@ -7,13 +7,22 @@ function MarketTrendChart() {
     series: [
       {
         name: "Market Trend",
-        data: [4200, 4300, 4250, 4500, 4700, 4600, 4800, 4950]
+        data: [
+          { x: "09:00", y: [4200, 4250, 4180, 4230] },
+          { x: "10:00", y: [4230, 4310, 4220, 4300] },
+          { x: "11:00", y: [4300, 4320, 4240, 4250] },
+          { x: "12:00", y: [4250, 4510, 4240, 4500] },
+          { x: "13:00", y: [4500, 4720, 4480, 4700] },
+          { x: "14:00", y: [4700, 4710, 4590, 4600] },
+          { x: "15:00", y: [4600, 4820, 4580, 4800] },
+          { x: "16:00", y: [4800, 4970, 4790, 4950] }
+        ]
       }
     ],
 
     options: {
       chart: {
-        type: "area",
+        type: "candlestick",
         height: 350,
         toolbar: {
           show: false
@@ -21,8 +30,7 @@ function MarketTrendChart() {
       },
 
       stroke: {
-        curve: "smooth",
-        width: 3
+        width: 1
       },
 
       dataLabels: {
@@ -30,6 +38,7 @@ function MarketTrendChart() {
       },
 
       xaxis: {
+        type: "category",
         categories: [
           "09:00",
           "10:00",
@@ -47,18 +56,17 @@ function MarketTrendChart() {
         strokeDashArray: 4
       },
 
-      fill: {
-        type: "gradient",
-        gradient: {
-          shadeIntensity: 1,
-          opacityFrom: 0.4,
-          opacityTo: 0.1,
-          stops: [0, 90, 100]
-        }
-      },
-
       tooltip: {
         theme: "light"
+      },
+
+      plotOptions: {
+        candlestick: {
+          colors: {
+            upward: '#22c55e',
+            downward: '#ef4444'
+          }
+        }
       }
     }
   });
@@ -70,11 +78,12 @@ function MarketTrendChart() {
       <Chart
         options={chartData.options}
         series={chartData.series}
-        type="area"
+        type="candlestick"
         height={350}
       />
     </div>
   );
 }
+
 
 export default MarketTrendChart;
