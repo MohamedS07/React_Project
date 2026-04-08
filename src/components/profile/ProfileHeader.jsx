@@ -28,7 +28,7 @@ function ProfileHeader() {
         }}>
             <Box sx={{ position: 'relative' }}>
                 <Avatar 
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    src=""
                     sx={{ 
                         width: 110, 
                         height: 110, 
@@ -64,10 +64,10 @@ function ProfileHeader() {
             
             <Box>
                 <Typography variant="h5" fontWeight="700" sx={{ color: '#1e293b' }}>
-                    Mohamed Idrish
+                    
                 </Typography>
                 <Typography variant="body2" sx={{ color: '#64748b', mt: 0.5 }}>
-                    mohamed@example.com
+                    
                 </Typography>
             </Box>
         </Box>

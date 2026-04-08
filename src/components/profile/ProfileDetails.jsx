@@ -20,7 +20,7 @@ function ProfileDetails() {
                     <Typography variant="caption" fontWeight="700" sx={{ color: 'var(--text-secondary)', mb: 0.5, display: 'block', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Name</Typography>
                     <TextField 
                         fullWidth 
-                        defaultValue="Mohamed Idrish"
+                        defaultValue=""
                         size="small"
                         sx={{ '& .MuiOutlinedInput-root': { borderRadius: '10px' } }}
                     />
@@ -30,7 +30,7 @@ function ProfileDetails() {
                     <Typography variant="caption" fontWeight="700" sx={{ color: 'var(--text-secondary)', mb: 0.5, display: 'block', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Email</Typography>
                     <TextField 
                         fullWidth 
-                        defaultValue="mohamed@example.com"
+                        defaultValue=""
                         size="small"
                         sx={{ '& .MuiOutlinedInput-root': { borderRadius: '10px' } }}
                     />
@@ -40,7 +40,7 @@ function ProfileDetails() {
                     <Typography variant="caption" fontWeight="700" sx={{ color: 'var(--text-secondary)', mb: 0.5, display: 'block', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Phone</Typography>
                     <TextField 
                         fullWidth 
-                        defaultValue="+91 98765 43210"
+                        defaultValue=""
                         size="small"
                         sx={{ '& .MuiOutlinedInput-root': { borderRadius: '10px' } }}
                     />
@@ -53,11 +53,11 @@ function ProfileDetails() {
                         sx={{ 
                             borderRadius: '10px', 
                             py: 1.5,
-                            bgcolor: 'var(--primary-600)',
+                            bgcolor: 'black',
                             textTransform: 'none',
                             fontWeight: 700,
                             boxShadow: '0 4px 6px -1px var(--primary-100)',
-                            '&:hover': { bgcolor: 'var(--primary-700)', transform: 'translateY(-1px)' },
+                            '&:hover': { bgcolor: '', transform: 'translateY(-1px)' },
                             transition: 'all 0.2s'
                         }}
                     >

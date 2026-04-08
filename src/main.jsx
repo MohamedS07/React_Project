@@ -7,13 +7,13 @@ import App from './App.jsx'
 const theme = createTheme({
   palette: {
     primary: {
-      main: 'rgb(124, 58, 237)', // --primary-600
-      light: 'rgb(167, 139, 250)', // --primary-400
-      dark: 'rgb(109, 40, 217)', // --primary-700
+      main: 'rgb(22, 163, 74)', // --primary-600
+      light: 'rgb(74, 222, 128)', // --primary-400
+      dark: 'rgb(21, 128, 61)', // --primary-700
       contrastText: '#ffffff',
     },
     secondary: {
-      main: 'rgb(99, 102, 241)', // --secondary-500
+      main: 'rgb(13, 148, 136)', // --secondary-500
     },
     background: {
       default: '#fdfdff', // --bg-main

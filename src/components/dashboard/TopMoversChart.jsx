@@ -1,79 +1,96 @@
-import React from "react";
-import { Typography, Box, Avatar, Stack, Link } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import { Typography, Box, Avatar, Stack, CircularProgress } from "@mui/material";
 import { TrendingUp, TrendingDown } from "@mui/icons-material";
 
-const movers = [
-  { symbol: "META", price: "$312.50", change: "+4.2%", up: true },
-  { symbol: "AMZN", price: "$123.10", change: "-1.8%", up: false },
-  { symbol: "NFLX", price: "$448.20", change: "+2.5%", up: true }
-];
-
 function TopMoversChart() {
+  const [movers, setMovers] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchMovers = async () => {
+      try {
+        const symbols = 'TSLA,NVDA,AAPL,MSFT,AMZN,GOOGL';
+        const response = await fetch(`http://localhost:5000/api/stocks/quote/${symbols}`);
+        const data = await response.json();
+        
+        // Convert batch object to array and filter out errors
+        const results = Object.values(data).filter(item => item && !item.message && item.symbol);
+        
+        if (results.length > 0) {
+          setMovers(results);
+        } else {
+          // Fallback static data if API limit is hit
+          setMovers([
+            { symbol: 'TSLA', close: '175.22', percent_change: '-1.45' },
+            { symbol: 'NVDA', close: '894.52', percent_change: '+2.10' },
+            { symbol: 'AAPL', close: '169.12', percent_change: '+0.54' },
+            { symbol: 'MSFT', close: '421.90', percent_change: '-0.12' },
+          ]);
+        }
+      } catch (err) {
+        console.error("Movers fetch error:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchMovers();
+  }, []);
+
+  if (loading) {
+    return <Box sx={{ display: 'flex', justifyContent: 'center', p: 4 }}><CircularProgress size={24} color="inherit" /></Box>;
+  }
+
   return (
     <>
-
       <Typography variant="body2" color="text.secondary" mb={2}>
-        Stocks with high volatility today
+        Common high-volume assets
       </Typography>
 
       <Stack spacing={2}>
-        {movers.map((stock, index) => (
-          <Box
-            key={index}
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              p: 1.5,
-              borderRadius: 2,
-              border: "1px solid #eee"
-            }}
-          >
-            <Box display="flex" alignItems="center" gap={1.5}>
-              <Avatar sx={{ width: 32, height: 32 }}>
-                {stock.symbol[0]}
-              </Avatar>
+        {movers.map((stock, index) => {
+          const isUp = parseFloat(stock.percent_change) >= 0;
+          return (
+            <Box
+              key={index}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                p: 1.5,
+                borderRadius: 2,
+                border: "1px solid #eee"
+              }}
+            >
+              <Box display="flex" alignItems="center" gap={1.5}>
+                <Avatar sx={{ width: 32, height: 32, bgcolor: 'var(--neutral-100)', color: 'black', fontSize: '0.8rem', fontWeight: 700 }}>
+                  {stock.symbol?.[0]}
+                </Avatar>
 
-              <Box>
-                <Typography fontWeight={600}>{stock.symbol}</Typography>
-                <Typography variant="caption" color="text.secondary">
-                  {stock.price}
+                <Box>
+                  <Typography fontWeight={600}>{stock.symbol}</Typography>
+                  <Typography variant="caption" color="text.secondary">
+                    ${parseFloat(stock.close).toFixed(2)}
+                  </Typography>
+                </Box>
+              </Box>
+
+              <Box display="flex" alignItems="center" gap={0.5}>
+                {isUp ? (
+                  <TrendingUp sx={{ color: "green", fontSize: 18 }} />
+                ) : (
+                  <TrendingDown sx={{ color: "red", fontSize: 18 }} />
+                )}
+
+                <Typography fontWeight={600} color={isUp ? "green" : "red"}>
+                  {parseFloat(stock.percent_change).toFixed(2)}%
                 </Typography>
               </Box>
             </Box>
-
-            <Box display="flex" alignItems="center" gap={0.5}>
-              {stock.up ? (
-                <TrendingUp sx={{ color: "green", fontSize: 18 }} />
-              ) : (
-                <TrendingDown sx={{ color: "red", fontSize: 18 }} />
-              )}
-
-              <Typography fontWeight={600} color={stock.up ? "green" : "red"}>
-                {stock.change}
-              </Typography>
-            </Box>
-          </Box>
-        ))}
+          );
+        })}
       </Stack>
-
-      {/* <Link
-        href="https://finviz.com/map.ashx"
-        target="_blank"
-        underline="none"
-        sx={{
-          display: "block",
-          mt: 2,
-          fontWeight: 500,
-          color: "#1976d2",
-          fontSize: 14
-        }}
-      >
-        View Market Heatmap →
-      </Link> */}
-
     </>
   );
 }
 
-export default TopMoversChart;
+export default TopMoversChart;

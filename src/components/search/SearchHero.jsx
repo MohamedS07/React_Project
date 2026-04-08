@@ -1,46 +1,62 @@
 import React from 'react';
-import { Card} from '@mui/material';
-import { TextField } from '@mui/material';
-import {Button} from '@mui/material';
-import {Box} from '@mui/material';
+import { Card, TextField, Button, InputAdornment, CircularProgress } from '@mui/material';
+import { Search } from '@mui/icons-material';
 
-function SearchHero() {
+function SearchHero({ symbol, setSymbol, onSearch, loading }) {
     return (
         <Card sx={{
             p: 1.5,
             display: 'flex',
             gap: 2,
             borderRadius: '16px',
-            boxShadow: '0 4px 6px -1px var(--neutral-100)',
-            border: '1px solid var(--border-light)',
-            mb: 3
+            boxShadow: '0 4px 6px -3px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.05)',
+            border: '1px solid var(--neutral-200)',
+            mb: 4,
+            bgcolor: '#ffffff',
+            height: '75px',
         }}>
             <TextField
                 fullWidth
-                placeholder="Search stocks (e.g., AAPL, GOOGL)"
+                placeholder="Enter stock symbol (e.g. AAPL, NVDA, TSLA)..."
                 variant="outlined"
                 size="small"
-                sx={{ 
-                    bgcolor: 'white', 
-                    borderRadius: '10px', 
-                    '& fieldset': { border: 'none' },
-                    '& .MuiInputBase-root': { height: '44px' } 
+                value={symbol}
+                onChange={(e) => setSymbol(e.target.value.toUpperCase())}
+                onKeyPress={(e) => e.key === 'Enter' && onSearch()}
+                InputProps={{
+                    startAdornment: (
+                        <InputAdornment position="start">
+                            <Search sx={{ color: 'var(--neutral-400)' }} />
+                        </InputAdornment>
+                    ),
+                    sx: { 
+                        bgcolor: 'white', 
+                        borderRadius: '12px',
+                        '& fieldset': { border: 'none' },
+                        height: '52px',
+                        fontSize: '1rem',
+                        fontWeight: 500
+                    }
                 }}
             />
             <Button
                 variant="contained"
+                onClick={onSearch}
+                disabled={loading}
                 sx={{
-                    bgcolor: 'var(--primary-600)',
-                    borderRadius: '10px',
-                    px: 4,
-                    height: '44px',
-                    fontWeight: 600,
+                    bgcolor: 'black', 
+                    borderRadius: '12px',
+                    px: 5,
+                    height: '52px',
+                    fontWeight: 700,
                     textTransform: 'none',
-                    '&:hover': { bgcolor: 'var(--primary-700)', transform: 'translateY(-1px)' },
+                    fontSize: '1rem',
+                    boxShadow: '0 4px 6px -1px rgba(16, 185, 129, 0.3)',
+                    '&:hover': { bgcolor: 'var(--primary-600)', transform: 'translateY(-1px)' },
                     transition: 'all 0.2s'
                 }}
             >
-                Analyze
+                {loading ? <CircularProgress size={24} color="inherit" /> : 'Analyze Stock'}
             </Button>
         </Card>
     );

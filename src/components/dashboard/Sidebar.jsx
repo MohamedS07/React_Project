@@ -1,14 +1,6 @@
 import React from "react";
-import { Box } from "@mui/material";
-import { Typography } from "@mui/material";
-import { List } from "@mui/material";
-import { ListItem } from "@mui/material";
-import { ListItemText } from "@mui/material";
-import { ListItemIcon } from "@mui/material";
-import { Dashboard } from "@mui/icons-material";
-import { Search } from "@mui/icons-material";
-import { AccountBalanceWallet } from "@mui/icons-material";
-import { Person } from "@mui/icons-material";
+import { Box, Typography, List, ListItemButton, ListItemText, ListItemIcon } from "@mui/material";
+import { Dashboard, Search, AccountBalanceWallet, Person } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
 
@@ -25,8 +17,8 @@ function SideBar() {
             }}
         >
             <Box sx={{ p: 3, borderBottom: '1px solid var(--border-light)' }}>
-                <Typography variant="h5" fontWeight="800" sx={{ color: "var(--primary-700)", letterSpacing: '-0.5px' }}>
-                    STOCK-IT
+                <Typography variant="h5" fontWeight="800" sx={{ color: '#000000', letterSpacing: '-0.5px' }}>
+                    StockVision
                 </Typography>
             </Box>
 
@@ -34,12 +26,10 @@ function SideBar() {
                 {[
                     { text: "Dashboard", icon: <Dashboard />, to: "/" },
                     { text: "Search Stocks", icon: <Search />, to: "/search" },
-                    { text: "My Portfolio", icon: <AccountBalanceWallet />, to: "/portfolio" },
-                    { text: "AI Insights", icon: <Search />, to: "/ai-insights" },
+                    { text: "Watchlist", icon: <AccountBalanceWallet />, to: "/watchlist" },
                     { text: "Profile", icon: <Person />, to: "/profile" },
                 ].map((item) => (
-                    <ListItem 
-                        button 
+                    <ListItemButton
                         key={item.text} 
                         component={Link} 
                         to={item.to}
@@ -48,9 +38,8 @@ function SideBar() {
                             mb: 0.5,
                             transition: 'all 0.2s',
                             '&:hover': {
-                                bgcolor: 'var(--primary-50)',
-                                color: 'var(--primary-700)',
-                                '& .MuiListItemIcon-root': { color: 'var(--primary-700)' }
+                                bgcolor: '',
+                                '& .MuiListItemIcon-root': { color: '#000000' }
                             },
                         }}
                     >
@@ -61,10 +50,11 @@ function SideBar() {
                             primary={item.text} 
                             primaryTypographyProps={{ 
                                 fontWeight: 500,
-                                fontSize: '0.9rem'
+                                fontSize: '0.9rem',
+                                color: '#000000'
                             }} 
                         />
-                    </ListItem>
+                    </ListItemButton>
                 ))}
             </List>
         </Box>

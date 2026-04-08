@@ -1,17 +1,20 @@
 import React from 'react';
 import { Grid } from '@mui/material';
-import { Card } from '@mui/material';
-import { Box } from '@mui/material';
-import { Typography } from '@mui/material';
+import StockMainCard from './StockMainCard';
+import MarketInsightsCard from './MarketInsightsCard';
 
-function StockOverview() {
+function StockOverview({ data }) {
     return (
-        <Grid container spacing={3} sx={{ mb: 3 }}>
-            <Grid item xs={12} md={8}>
-                <Card sx={{ borderRadius: '16px', border: '1px solid #e2e8f0', boxShadow: 'none', p: 4, height: 300,width:500 }}>    
-                </Card>
+        <Grid container spacing={4} sx={{ mb: 6 }}>
+            
+            <Grid item xs={12} lg={8}>
+                <StockMainCard data={data} />
             </Grid>
 
+            
+            <Grid item xs={12} lg={4}>
+                <MarketInsightsCard data={data} />
+            </Grid>
         </Grid>
     );
 }

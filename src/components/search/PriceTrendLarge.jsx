@@ -1,41 +1,55 @@
-import React, { useState } from 'react';
-import { Card, Box, Typography } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { Card, Box, Typography, Button, Stack, CircularProgress } from '@mui/material';
 import Chart from 'react-apexcharts';
 
-function PriceTrendLarge() {
-    const [chartData] = useState({
+function PriceTrendLarge({ symbol }) {
+    const [timeframe, setTimeframe] = useState('1M');
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        const fetchHistory = async () => {
+            if (!symbol) return;
+            setLoading(true);
+            
+            let interval = '1day';
+            let outputsize = '30';
+            
+            if (timeframe === '1D') { interval = '5min'; outputsize = '78'; }
+            if (timeframe === '1W') { interval = '30min'; outputsize = '100'; }
+            if (timeframe === '1M') { interval = '1day'; outputsize = '30'; }
+            if (timeframe === '1Y') { interval = '1week'; outputsize = '52'; }
+            if (timeframe === 'ALL') { interval = '1month'; outputsize = '120'; }
+
+            try {
+                const response = await fetch(`http://localhost:5000/api/stocks/time-series/${symbol}?interval=${interval}&outputsize=${outputsize}`);
+                const result = await response.json();
+                if (result.values) {
+                    setData(result.values.reverse());
+                }
+            } catch (err) {
+                console.error("Error fetching trend data:", err);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchHistory();
+    }, [symbol, timeframe]);
+
+    const chartData = {
         series: [{
             name: 'Price',
-            data: [
-                { x: new Date(2026, 2, 20).getTime(), y: 4120 },
-                { x: new Date(2026, 2, 21).getTime(), y: 4160 },
-                { x: new Date(2026, 2, 22).getTime(), y: 4180 },
-                { x: new Date(2026, 2, 23).getTime(), y: 4230 },
-                { x: new Date(2026, 2, 24).getTime(), y: 4260 },
-                { x: new Date(2026, 2, 25).getTime(), y: 4290 },
-                { x: new Date(2026, 2, 26).getTime(), y: 4320 },
-                { x: new Date(2026, 2, 27).getTime(), y: 4360 }
-            ]
+            data: data.map(item => parseFloat(item.close).toFixed(2))
         }],
         options: {
             chart: {
-                type: 'area', // Area chart looks more modern than just a line
+                type: 'area',
                 height: 400,
-                toolbar: {
-                    show: false
-                },
-                zoom: {
-                    enabled: false
-                },
-                dropShadow: {
-                    enabled: true,
-                    top: 3,
-                    left: 2,
-                    blur: 4,
-                    opacity: 0.1,
-                }
+                toolbar: { show: false },
+                zoom: { enabled: false },
+                fontFamily: 'Poppins, sans-serif'
             },
-            colors: ['#7c3aed'], // our --primary-600
+            colors: ['#3b82f6'],
             stroke: {
                 curve: 'smooth',
                 width: 3
@@ -44,90 +58,102 @@ function PriceTrendLarge() {
                 type: 'gradient',
                 gradient: {
                     shadeIntensity: 1,
-                    opacityFrom: 0.45,
+                    opacityFrom: 0.3,
                     opacityTo: 0.05,
-                    stops: [20, 100]
+                    stops: [0, 90, 100]
                 }
             },
-            dataLabels: {
-                enabled: false
-            },
-            markers: {
-                size: 4,
-                colors: ['#7c3aed'],
-                strokeColors: '#fff',
-                strokeWidth: 2,
-                hover: {
-                    size: 7,
-                }
-            },
+            dataLabels: { enabled: false },
+            markers: { size: 0 },
             xaxis: {
-                type: 'datetime',
+                categories: data.map(item => timeframe === '1D' ? item.datetime.split(' ')[1] : item.datetime),
                 labels: {
-                    format: 'MMM dd',
-                    style: {
-                        colors: '#64748b',
-                        fontFamily: 'Poppins, sans-serif'
-                    }
+                    style: { colors: '#94a3b8', fontWeight: 500 }
                 },
-                axisBorder: {
-                    show: false
-                },
-                axisTicks: {
-                    show: false
-                }
+                axisBorder: { show: false },
+                axisTicks: { show: false }
             },
             yaxis: {
                 labels: {
                     formatter: (val) => `$${val}`,
-                    style: {
-                        colors: '#64748b',
-                        fontFamily: 'Poppins, sans-serif'
-                    }
+                    style: { colors: '#94a3b8', fontWeight: 500 }
                 }
             },
             grid: {
                 borderColor: '#f1f5f9',
                 strokeDashArray: 4,
-                yaxis: {
-                    lines: {
-                        show: true
-                    }
-                }
+                xaxis: { lines: { show: false } }
             },
             tooltip: {
                 theme: 'light',
-                x: {
-                    format: 'dd MMM yyyy'
-                }
+                x: { show: true }
             }
         }
-    });
+    };
 
     return (
-        <Card sx={{
-            borderRadius: '24px',
-            border: '1px solid var(--border-light)',
-            boxShadow: '0 10px 15px -3px var(--neutral-100)',
-            p: 4,
-            mb: 3,
-            minHeight: 450,
-            bgcolor: 'white'
-        }}>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 3 }}>
+        <Box sx={{ mt: 4 }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', mb: 3 }}>
                 <Box>
-                    <Typography variant="h6" fontWeight="800" sx={{ color: 'var(--text-primary)' }}>Price Performance</Typography>
-                    <Typography variant="body2" sx={{ color: 'var(--text-secondary)' }}>Live market data visualization</Typography>
+                    <Typography variant="h5" fontWeight="800" sx={{ color: 'var(--neutral-900)' }}>
+                        Price Trend: {symbol}
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: 'var(--neutral-500)', mt: 0.5 }}>
+                        Visualizing the historical price movement of {symbol}.
+                    </Typography>
                 </Box>
+                
+                <Stack direction="row" spacing={0.5} sx={{ bgcolor: 'var(--neutral-100)', p: 0.5, borderRadius: '12px' }}>
+                    {['1D', '1W', '1M', '1Y', 'ALL'].map((tf) => (
+                        <Button
+                            key={tf}
+                            onClick={() => setTimeframe(tf)}
+                            size="small"
+                            sx={{
+                                minWidth: '44px',
+                                borderRadius: '10px',
+                                textTransform: 'none',
+                                fontWeight: 700,
+                                fontSize: '0.75rem',
+                                color: timeframe === tf ? 'var(--neutral-900)' : 'var(--neutral-400)',
+                                bgcolor: timeframe === tf ? 'white' : 'transparent',
+                                boxShadow: timeframe === tf ? '0 2px 4px rgba(0,0,0,0.05)' : 'none',
+                                '&:hover': { bgcolor: timeframe === tf ? 'white' : 'rgba(0,0,0,0.05)' }
+                            }}
+                        >
+                            {tf}
+                        </Button>
+                    ))}
+                </Stack>
             </Box>
 
-            <Chart
-                options={chartData.options}
-                series={chartData.series}
-                type="area"
-                height={350}
-            />
-        </Card>
+            <Card sx={{
+                borderRadius: '24px',
+                border: '1px solid var(--neutral-200)',
+                bgcolor: 'white',
+                boxShadow: 'none',
+                height: '500px', // Fixed height for consistency
+                display: 'flex',
+                flexDirection: 'column',
+                overflow: 'hidden'
+            }}>
+                {loading ? (
+                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', width: '100%' }}>
+                        <CircularProgress color="inherit" />
+                    </Box>
+                ) : (
+                    <Box sx={{ p: 1, width: '100%', height: '100%' }}>
+                        <Chart
+                            options={chartData.options}
+                            series={chartData.series}
+                            type="area"
+                            height="100%"
+                            width="100%"
+                        />
+                    </Box>
+                )}
+            </Card>
+        </Box>
     );
 }
 

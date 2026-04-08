@@ -1,89 +1,86 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Chart from "react-apexcharts";
+import { Box, CircularProgress } from "@mui/material";
 
 function MarketTrendChart() {
+  const [series, setSeries] = useState([{ data: [] }]);
+  const [loading, setLoading] = useState(true);
 
-  const [chartData] = useState({
-    series: [
-      {
-        name: "Market Trend",
-        data: [
-          { x: "09:00", y: [4200, 4250, 4180, 4230] },
-          { x: "10:00", y: [4230, 4310, 4220, 4300] },
-          { x: "11:00", y: [4300, 4320, 4240, 4250] },
-          { x: "12:00", y: [4250, 4510, 4240, 4500] },
-          { x: "13:00", y: [4500, 4720, 4480, 4700] },
-          { x: "14:00", y: [4700, 4710, 4590, 4600] },
-          { x: "15:00", y: [4600, 4820, 4580, 4800] },
-          { x: "16:00", y: [4800, 4970, 4790, 4950] }
-        ]
-      }
-    ],
+  useEffect(() => {
+    const fetchTrend = async () => {
+      try {
+        // Fetch 30 days of SPY data
+        const response = await fetch(`http://localhost:5000/api/stocks/time-series/SPY?interval=1day&outputsize=30`);
+        const result = await response.json();
+        
+        if (result.values) {
+          const formattedData = result.values.map(item => ({
+            x: new Date(item.datetime),
+            y: [
+              parseFloat(item.open),
+              parseFloat(item.high),
+              parseFloat(item.low),
+              parseFloat(item.close)
+            ]
+          })).reverse();
 
-    options: {
-      chart: {
-        type: "candlestick",
-        height: 350,
-        toolbar: {
-          show: false
+          setSeries([{ data: formattedData }]);
         }
-      },
+      } catch (err) {
+        console.error("Trend chart error:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchTrend();
+  }, []);
 
-      stroke: {
-        width: 1
-      },
-
-      dataLabels: {
-        enabled: false
-      },
-
-      xaxis: {
-        type: "category",
-        categories: [
-          "09:00",
-          "10:00",
-          "11:00",
-          "12:00",
-          "13:00",
-          "14:00",
-          "15:00",
-          "16:00"
-        ]
-      },
-
-      grid: {
-        borderColor: "#e0e0e0",
-        strokeDashArray: 4
-      },
-
-      tooltip: {
-        theme: "light"
-      },
-
-      plotOptions: {
-        candlestick: {
-          colors: {
-            upward: '#22c55e',
-            downward: '#ef4444'
-          }
+  const options = {
+    chart: {
+      type: "candlestick",
+      height: 350,
+      toolbar: { show: false }
+    },
+    xaxis: {
+      type: "datetime",
+      labels: { style: { colors: '#94a3b8' } }
+    },
+    yaxis: {
+      tooltip: { enabled: true },
+      labels: { style: { colors: '#94a3b8' } }
+    },
+    grid: {
+      borderColor: "#f1f5f9",
+      strokeDashArray: 4
+    },
+    plotOptions: {
+      candlestick: {
+        colors: {
+          upward: '#22c55e',
+          downward: '#ef4444'
         }
       }
     }
-  });
+  };
+
+  if (loading) {
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 300 }}>
+        <CircularProgress size={24} color="inherit" />
+      </Box>
+    );
+  }
 
   return (
-    <div style={{ background: "#fff", padding: "20px", borderRadius: "10px" }}>
-      <p>S&P 500 Index performance (Today)</p>
-
+    <Box sx={{ mt: 2 }}>
       <Chart
-        options={chartData.options}
-        series={chartData.series}
+        options={options}
+        series={series}
         type="candlestick"
-        height={350}
+        height={320}
       />
-    </div>
+    </Box>
   );
 }
-
 
 export default MarketTrendChart;

@@ -5,7 +5,7 @@ import Chart from 'react-apexcharts';
 function PortfolioCharts() {
     const chartOptions = {
         labels: ['', '', '', '', ''],
-        colors: ['#7c3aed', '#8b5cf6', '#a78bfa', '#c4b5fd', '#ede9fe'], // Violet Shades
+        colors: ['#059669', '#10b981', '#34d399', '#6ee7b7', '#dcfce7'], // Green Shades (Emerald palette)
         chart: {
             type: 'donut',
         },
@@ -62,7 +62,7 @@ function PortfolioCharts() {
         }
     };
 
-    const chartSeries = [35, 25, 20, 12, 8];
+    const chartSeries = [];
 
     return (
         <Grid container spacing={3}>
