@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography, List, ListItemButton, ListItemText, ListItemIcon } from "@mui/material";
-import { Dashboard, Search, AccountBalanceWallet, Person } from "@mui/icons-material";
+import { Dashboard, Search, Person } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
 
@@ -26,7 +26,6 @@ function SideBar() {
                 {[
                     { text: "Dashboard", icon: <Dashboard />, to: "/" },
                     { text: "Search Stocks", icon: <Search />, to: "/search" },
-                    { text: "Watchlist", icon: <AccountBalanceWallet />, to: "/watchlist" },
                     { text: "Profile", icon: <Person />, to: "/profile" },
                 ].map((item) => (
                     <ListItemButton

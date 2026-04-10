@@ -6,11 +6,15 @@ const RegisterCard = () => {
   const [formData, setFormData] = useState({ username: '', email: '', password: '' });
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleRegister = async () => {
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    if(loading) return;
     setError('');
     setSuccess('');
+    setLoading(true);
     try {
       const response = await fetch('http://localhost:5000/auth/signup', {
         method: 'POST',
@@ -27,6 +31,8 @@ const RegisterCard = () => {
       }
     } catch (err) {
       setError('Server connection failed');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -56,8 +62,9 @@ const RegisterCard = () => {
         {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
         {success && <Alert severity="success" sx={{ mb: 2 }}>{success}</Alert>}
 
-        <Stack spacing={2.5}>
-          <TextField 
+        <form onSubmit={handleRegister}>
+          <Stack spacing={2.5}>
+            <TextField 
             label="Full Name" 
             fullWidth 
             value={formData.username}
@@ -104,22 +111,24 @@ const RegisterCard = () => {
               '& .MuiInputLabel-root': { color: 'rgba(255, 255, 255, 0.7)' },
             }}
           />
-          <Button
-            variant="contained"
-            size="large"
-            onClick={handleRegister}
-            sx={{
-              mt: 2,
-              py: 1.5,
-              borderRadius: '12px',
-              fontWeight: "700",
-              background: 'linear-gradient(135deg, var(--primary-500), var(--primary-700))',
-            }}
-            fullWidth
-          >
-            Create Account
-          </Button>
-        </Stack>
+            <Button
+              type="submit"
+              variant="contained"
+              size="large"
+              disabled={loading}
+              sx={{
+                mt: 2,
+                py: 1.5,
+                borderRadius: '12px',
+                fontWeight: "700",
+                background: 'linear-gradient(135deg, var(--primary-500), var(--primary-700))',
+              }}
+              fullWidth
+            >
+              {loading ? "Creating Account..." : "Create Account"}
+            </Button>
+          </Stack>
+        </form>
 
         <Box textAlign="center" mt={4}>
           <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.7)" }}>

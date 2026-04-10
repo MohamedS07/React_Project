@@ -21,18 +21,15 @@ function DashBoardPage() {
         const symbols = 'SPY,NIFTY 50:NSE,NIFTYBEES:NSE';
         const response = await fetch(`http://localhost:5000/api/stocks/quote/${symbols}`);
         const data = await response.json();
-        console.log("📊 Dashboard Data:", data);
+        console.log("Dashboard Data:", data);
         
-        // Find Nifty key (it might be NIFTYBEES, NIFTY 50, etc.)
         const niftyKey = Object.keys(data).find(k => k.includes('NIFTY')) || 'NIFTY 50:NSE';
         const niftyData = data[niftyKey];
 
-        // Check if niftyData is actually a stock object and not an error
         let validNifty = (niftyData && !niftyData.message && niftyData.close) ? niftyData : null;
         
-        // Fallback Simulation if API fails for Indian markets (common on free tier)
         if (!validNifty) {
-          console.warn("⚠️ Nifty API restricted. Using last known market data.");
+          console.warn("Nifty API restricted. Using last known market data.");
           validNifty = {
             close: "22453.30",
             percent_change: "+0.85",

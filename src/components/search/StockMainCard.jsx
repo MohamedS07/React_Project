@@ -1,53 +1,10 @@
 import React from 'react';
 import { Card, Box, Typography, Button, Divider, Chip } from '@mui/material';
-import { Business, TrendingUp, Add } from '@mui/icons-material';
+import { Business, TrendingUp } from '@mui/icons-material';
 import StockStatsGrid from './StockStatsGrid';
 
 const StockMainCard = ({ data }) => {
     if (!data) return null;
-
-    const handleAddToWatchlist = async () => {
-        const token = localStorage.getItem('token');
-        if (!token) {
-            alert('⚠️ Please Login first to add stocks to your Watchlist!');
-            return;
-        }
-
-        const currentPrice = parseFloat(data.price || data.close || 0);
-        const payload = {
-            symbol: data.symbol,
-            name: data.name || data.symbol,
-            exchange: data.exchange || 'N/A',
-            savedPrice: currentPrice,
-            currentPrice: currentPrice,
-            change: data.change || '0.00',
-            percentChange: data.percent_change || '0%'
-        };
-
-        console.log('📌 Adding to watchlist:', payload);
-
-        try {
-            const response = await fetch('http://localhost:5000/api/watchlist/add', {
-                method: 'POST',
-                headers: { 
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}` 
-                },
-                body: JSON.stringify(payload)
-            });
-            const result = await response.json();
-            console.log('📬 Watchlist response:', result);
-
-            if (response.ok) {
-                alert(`✅ ${data.symbol} added to your Watchlist!`);
-            } else {
-                alert(`❌ ${result.message || 'Could not add to watchlist'}`);
-            }
-        } catch (err) {
-            console.error('Watchlist error:', err);
-            alert('❌ Failed to connect to server. Is your backend running?');
-        }
-    };
 
     const isPositive = parseFloat(data.change) >= 0;
 
@@ -103,22 +60,6 @@ const StockMainCard = ({ data }) => {
                 <Typography variant="body2" sx={{ color: 'var(--neutral-500)', maxWidth: '60%', fontStyle: 'italic', lineHeight: 1.6 }}>
                     Market Status: {data.is_market_open ? 'Open' : 'Closed'}
                 </Typography>
-                <Button 
-                    variant="contained" 
-                    startIcon={<Add />}
-                    onClick={handleAddToWatchlist}
-                    sx={{ 
-                        bgcolor: 'black', 
-                        borderRadius: '12px', 
-                        px: 4, 
-                        py: 1.5,
-                        fontWeight: 700,
-                        textTransform: 'none',
-                        '&:hover': { bgcolor: 'var(--neutral-800)' }
-                    }}
-                >
-                    Add to Watchlist
-                </Button>
             </Box>
         </Card>
     );

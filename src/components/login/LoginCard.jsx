@@ -6,10 +6,14 @@ import { Link, useNavigate } from "react-router-dom";
 const LoginCard = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    if(loading) return;
     setError('');
+    setLoading(true);
     try {
       const response = await fetch('http://localhost:5000/auth/login', {
         method: 'POST',
@@ -28,6 +32,8 @@ const LoginCard = () => {
       }
     } catch (err) {
       setError('Server connection failed');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -56,9 +62,10 @@ const LoginCard = () => {
 
         {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
 
-        <Stack spacing={2.5}>
-          <TextField 
-            label="Email Address" 
+        <form onSubmit={handleLogin}>
+          <Stack spacing={2.5}>
+            <TextField 
+              label="Email Address" 
             fullWidth 
             type="email" 
             value={formData.email}
@@ -89,22 +96,24 @@ const LoginCard = () => {
               '& .MuiInputLabel-root': { color: 'rgba(255, 255, 255, 0.7)' },
             }}
           />
-          <Button
-            variant="contained"
-            size="large"
-            onClick={handleLogin}
-            sx={{
-              mt: 2,
-              py: 1.5,
-              borderRadius: '12px',
-              fontWeight: "700",
-              background: 'linear-gradient(135deg, var(--primary-500), var(--primary-700))',
-            }}
-            fullWidth
-          >
-            Sign In
-          </Button>
-        </Stack>
+            <Button
+              type="submit"
+              variant="contained"
+              size="large"
+              disabled={loading}
+              sx={{
+                mt: 2,
+                py: 1.5,
+                borderRadius: '12px',
+                fontWeight: "700",
+                background: 'linear-gradient(135deg, var(--primary-500), var(--primary-700))',
+              }}
+              fullWidth
+            >
+              {loading ? "Signing in..." : "Sign In"}
+            </Button>
+          </Stack>
+        </form>
 
         <Box textAlign="center" mt={4}>
           <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.7)" }}>
