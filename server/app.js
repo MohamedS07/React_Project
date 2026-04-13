@@ -1,7 +1,7 @@
-const express = require('express');
-const cors = require('cors');
-const authRouter = require('./routers/auth.router');
-const stockRouter = require('./routers/stock.router');
+import express from 'express';
+import cors from 'cors';
+import authRouter from './routers/auth.router.js';
+import stockRouter from './routers/stock.router.js';
 
 const app = express();
 
@@ -19,4 +19,4 @@ app.get('/', (req, res) => {
   res.send('Welcome! Your backend structure is ready 🚀');
 });
 
-module.exports = app;
+export default app;

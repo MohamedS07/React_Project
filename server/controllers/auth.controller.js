@@ -1,9 +1,9 @@
-const User = require('../schemas/User');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const mongoose = require('mongoose');
+import User from '../schemas/User.js';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import mongoose from 'mongoose';
 
-exports.signup = async (req, res) => {
+export const signup = async (req, res) => {
   try {
     if (mongoose.connection.readyState !== 1) {
       return res.status(500).json({ message: "Database is currently unavailable. Please check your MongoDB connection!" });
@@ -44,7 +44,7 @@ exports.signup = async (req, res) => {
   }
 };
 
-exports.login = async (req, res) => {
+export const login = async (req, res) => {
   try {
     if (mongoose.connection.readyState !== 1) {
       return res.status(500).json({ message: "Database is currently unavailable. Please check your MongoDB connection!" });
@@ -80,7 +80,7 @@ exports.login = async (req, res) => {
   }
 };
 
-exports.getProfile = async (req, res) => {
+export const getProfile = async (req, res) => {
   try {
     const user = await User.findById(req.user).select('-password');
     if (!user) return res.status(404).json({ message: "User not found!" });
@@ -90,7 +90,7 @@ exports.getProfile = async (req, res) => {
   }
 };
 
-exports.updateProfile = async (req, res) => {
+export const updateProfile = async (req, res) => {
   try {
     const { username, email, phone, avatar } = req.body;
     

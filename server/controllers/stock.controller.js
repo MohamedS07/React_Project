@@ -1,4 +1,4 @@
-const stockService = require('../services/stockService');
+import stockService from '../services/stockService.js';
 
 const cache = {};
 const CACHE_DURATION = 60 * 1000; 
@@ -75,7 +75,7 @@ const getStockTimeSeries = async (req, res) => {
     }
 };
 
-module.exports = {
+export default {
     getStockQuote,
     getStockPrice,
     getStockTimeSeries

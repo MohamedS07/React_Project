@@ -1,4 +1,4 @@
-const axios = require('axios');
+import axios from 'axios';
 
 class StockService {
     constructor() {
@@ -64,4 +64,4 @@ class StockService {
     }
 }
 
-module.exports = new StockService();
+export default new StockService();
