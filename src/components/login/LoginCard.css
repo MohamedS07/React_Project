@@ -1,0 +1,92 @@
+.login-page-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-container {
+  transition: all 0.5s ease;
+}
+
+.login-card {
+  border-radius: 24px !important;
+  padding: 12px !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+  backdrop-filter: blur(18px) saturate(160%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4) !important;
+  color: #fff !important;
+  overflow: visible !important;
+}
+
+.login-title {
+  color: #fff !important;
+  letter-spacing: -1px !important;
+  font-weight: 800 !important;
+}
+
+.login-subtitle {
+  color: rgba(255, 255, 255, 0.8) !important;
+  margin-top: 8px !important;
+}
+
+.login-textfield .MuiOutlinedInput-root {
+  color: #fff !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border-radius: 12px !important;
+}
+
+.login-textfield .MuiOutlinedInput-root fieldset {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.login-textfield .MuiOutlinedInput-root:hover fieldset {
+  border-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.login-textfield .MuiOutlinedInput-root.Mui-focused fieldset {
+  border-color: var(--primary-500) !important;
+}
+
+.login-textfield .MuiInputLabel-root {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.login-textfield .MuiInputLabel-root.Mui-focused {
+  color: var(--primary-300) !important;
+}
+
+.login-textfield .MuiFormHelperText-root {
+  color: #ff8a80 !important;
+}
+
+.login-button {
+  margin-top: 16px !important;
+  padding: 12px 0 !important;
+  border-radius: 12px !important;
+  font-weight: 700 !important;
+  background: linear-gradient(135deg, var(--primary-500), var(--primary-700)) !important;
+  color: white !important;
+  text-transform: none !important;
+}
+
+.login-button:hover {
+  background: linear-gradient(135deg, var(--primary-600), var(--primary-800)) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3) !important;
+}
+
+.login-footer-text {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.login-footer-link {
+  color: var(--primary-300) !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+}
+
+.login-footer-link:hover {
+  text-decoration: underline !important;
+}

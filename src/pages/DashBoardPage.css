@@ -1,0 +1,23 @@
+.dashboard-loading-container {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  height: 80vh !important;
+}
+
+.dashboard-page-content {
+  padding: 24px !important;
+}
+
+.dashboard-title {
+  font-weight: 800 !important;
+  margin-bottom: 24px !important;
+}
+
+.dashboard-grid-spacing {
+  margin-top: 32px !important;
+}
+
+.dashboard-icon-small {
+  font-size: 18px !important;
+}

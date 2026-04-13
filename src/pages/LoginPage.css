@@ -1,0 +1,10 @@
+.login-page-video-overlay {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-page-container {
+  transition: all 0.5s ease;
+}

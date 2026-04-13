@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Card, Box, Typography, TextField, Button, Alert } from '@mui/material';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import "./ProfileDetails.css";
 
 function ProfileDetails({ profile, onUpdate }) {
     const [status, setStatus] = useState({ type: '', message: '' });
@@ -50,15 +51,8 @@ function ProfileDetails({ profile, onUpdate }) {
     }, [profile]);
 
     return (
-        <Card sx={{ 
-            p: 4, 
-            borderRadius: '20px', 
-            border: '1px solid var(--border-light)', 
-            boxShadow: '0 4px 6px -1px var(--neutral-100)',
-            maxWidth: '600px',
-            margin: '0 auto'
-        }}>
-            <Typography variant="subtitle1" fontWeight="800" sx={{ color: 'var(--text-primary)', mb: 3 }}>
+        <Card className="profile-details-card">
+            <Typography variant="subtitle1" className="profile-section-title">
                 Personal Information
             </Typography>
 
@@ -69,9 +63,9 @@ function ProfileDetails({ profile, onUpdate }) {
             )}
 
             <form onSubmit={formik.handleSubmit}>
-                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
+                <Box className="profile-form-container">
                     <Box>
-                        <Typography variant="caption" fontWeight="700" sx={{ color: 'var(--text-secondary)', mb: 0.5, display: 'block', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Name</Typography>
+                        <Typography variant="caption" className="profile-field-label">Name</Typography>
                         <TextField 
                             name="username"
                             fullWidth 
@@ -81,12 +75,12 @@ function ProfileDetails({ profile, onUpdate }) {
                             error={formik.touched.username && Boolean(formik.errors.username)}
                             helperText={formik.touched.username && formik.errors.username}
                             size="small"
-                            sx={{ '& .MuiOutlinedInput-root': { borderRadius: '10px' } }}
+                            className="profile-textfield"
                         />
                     </Box>
 
                     <Box>
-                        <Typography variant="caption" fontWeight="700" sx={{ color: 'var(--text-secondary)', mb: 0.5, display: 'block', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Email</Typography>
+                        <Typography variant="caption" className="profile-field-label">Email</Typography>
                         <TextField 
                             name="email"
                             fullWidth 
@@ -96,12 +90,12 @@ function ProfileDetails({ profile, onUpdate }) {
                             error={formik.touched.email && Boolean(formik.errors.email)}
                             helperText={formik.touched.email && formik.errors.email}
                             size="small"
-                            sx={{ '& .MuiOutlinedInput-root': { borderRadius: '10px' } }}
+                            className="profile-textfield"
                         />
                     </Box>
 
                     <Box>
-                        <Typography variant="caption" fontWeight="700" sx={{ color: 'var(--text-secondary)', mb: 0.5, display: 'block', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Phone</Typography>
+                        <Typography variant="caption" className="profile-field-label">Phone</Typography>
                         <TextField 
                             name="phone"
                             fullWidth 
@@ -111,7 +105,7 @@ function ProfileDetails({ profile, onUpdate }) {
                             error={formik.touched.phone && Boolean(formik.errors.phone)}
                             helperText={formik.touched.phone && formik.errors.phone}
                             size="small"
-                            sx={{ '& .MuiOutlinedInput-root': { borderRadius: '10px' } }}
+                            className="profile-textfield"
                         />
                     </Box>
 
@@ -121,16 +115,7 @@ function ProfileDetails({ profile, onUpdate }) {
                             fullWidth
                             disabled={saving}
                             variant="contained" 
-                            sx={{ 
-                                borderRadius: '10px', 
-                                py: 1.5,
-                                bgcolor: 'black',
-                                textTransform: 'none',
-                                fontWeight: 700,
-                                boxShadow: '0 4px 6px -1px var(--primary-100)',
-                                '&:hover': { bgcolor: '', transform: 'translateY(-1px)' },
-                                transition: 'all 0.2s'
-                            }}
+                            className="profile-submit-btn"
                         >
                             {saving ? 'Updating...' : 'Update Profile'}
                         </Button>

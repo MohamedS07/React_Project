@@ -2,6 +2,8 @@ import React, { useRef } from 'react';
 import { Box, Avatar, Typography, IconButton } from '@mui/material';
 import { CameraAlt as CameraIcon } from '@mui/icons-material';
 
+import "./ProfileHeader.css";
+
 function ProfileHeader({ profile, onAvatarChange }) {
     const fileInputRef = useRef(null);
 
@@ -21,44 +23,21 @@ function ProfileHeader({ profile, onAvatarChange }) {
     };
 
     return (
-        <Box sx={{
-            textAlign: 'center',
-            mb: 6,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: 2
-        }}>
-            <Box sx={{ position: 'relative' }}>
+        <Box className="profile-header-container">
+            <Box className="avatar-wrapper">
                 <Avatar 
                     src={profile?.avatar}
-                    sx={{ 
-                        width: 110, 
-                        height: 110, 
-                        bgcolor: 'var(--brand-color)',
-                        color: 'white',
-                        fontSize: '3rem',
-                        cursor: 'pointer',
-                        '&:hover': { opacity: 0.85 }
-                    }} 
+                    className="profile-avatar"
                     onClick={handleAvatarClick}
                 >
                     {profile?.username?.charAt(0)?.toUpperCase()}
                 </Avatar>
                 <IconButton 
                     onClick={handleAvatarClick}
-                    sx={{ 
-                        position: 'absolute', 
-                        bottom: 0, 
-                        right: 0, 
-                        bgcolor: '#ffffff',
-                        boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-                        '&:hover': { bgcolor: '#f8fafc' },
-                        padding: '6px'
-                    }}
+                    className="avatar-edit-btn"
                     size="small"
                 >
-                    <CameraIcon sx={{ fontSize: 18, color: '#64748b' }} />
+                    <CameraIcon className="camera-icon" />
                 </IconButton>
                 <input 
                     type="file" 
@@ -69,11 +48,11 @@ function ProfileHeader({ profile, onAvatarChange }) {
                 />
             </Box>
             
-            <Box>
-                <Typography variant="h5" fontWeight="700" sx={{ color: '#1e293b' }}>
+            <Box className="profile-info-display">
+                <Typography variant="h5" className="profile-info-username">
                     {profile?.username || "Investor"}
                 </Typography>
-                <Typography variant="body2" sx={{ color: '#64748b', mt: 0.5 }}>
+                <Typography variant="body2" className="profile-info-email">
                     {profile?.email}
                 </Typography>
             </Box>

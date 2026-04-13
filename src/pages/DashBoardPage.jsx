@@ -6,6 +6,8 @@ import TopMoversBox from "../components/dashboard/TopMoversBox";
 import { Typography, Grid, Box, CircularProgress } from "@mui/material";
 import { Public, TrendingUp, ShowChart, BarChart } from "@mui/icons-material";
 
+import "./DashBoardPage.css";
+
 function DashBoardPage() {
   const [marketData, setMarketData] = useState({
     spy: null,
@@ -52,17 +54,17 @@ function DashBoardPage() {
 
   if (loading) {
     return (
-      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80vh' }}>
+      <Box className="dashboard-loading-container">
         <CircularProgress color="inherit" />
       </Box>
     );
   }
 
   return (
-    <Box sx={{ p: 3 }}>
+    <Box className="dashboard-page-content">
       <SearchBar />
 
-      <Typography variant="h5" fontWeight="800" mb={3}>
+      <Typography variant="h5" className="dashboard-title">
         Market Dashboard
       </Typography>
 
@@ -70,19 +72,19 @@ function DashBoardPage() {
         <DashboardSummary
           title="S&P 500 (US)"
           value={marketData.spy?.close ? `$${parseFloat(marketData.spy.close).toFixed(2)}` : "$5,204.34"}
-          icon={<Public sx={{ fontSize: 18 }} />}
+          icon={<Public className="dashboard-icon-small" />}
           trend={marketData.spy?.percent_change || "+1.12"}
         />
         <DashboardSummary
           title="Nifty 50 (NSE)"
           value={marketData.nifty?.close ? `${parseFloat(marketData.nifty.close).toLocaleString('en-IN')}` : "22,453.30"}
-          icon={<ShowChart sx={{ fontSize: 18 }} />}
+          icon={<ShowChart className="dashboard-icon-small" />}
           trend={marketData.nifty?.percent_change || "+0.85"}
           isSimulated={marketData.nifty?.is_simulated}
         />
       </Grid>
 
-      <Grid container spacing={3} sx={{ mt: 4 }}>
+      <Grid container spacing={3} className="dashboard-grid-spacing">
         <Grid item xs={12} md={8}>
           <MarketTrendBox />
         </Grid>

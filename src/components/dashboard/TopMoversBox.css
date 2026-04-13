@@ -1,0 +1,15 @@
+.top-movers-card {
+  border-radius: 16px !important;
+  min-height: 530px !important;
+  width: 430px !important;
+  padding: 24px !important; /* p: 3 */
+  box-shadow: none !important;
+  border: 1px solid #e2e8f0 !important;
+  background-color: white !important;
+}
+
+.top-movers-title {
+  font-weight: bold !important;
+  color: #1e293b !important;
+  margin-bottom: 16px !important; /* mb: 2 */
+}

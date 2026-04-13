@@ -1,8 +1,4 @@
-import React, { useState } from "react";
-import { Box, Alert, CircularProgress } from "@mui/material";
-import SearchHero from "../components/search/SearchHero";
-import StockOverview from "../components/search/StockOverview";
-import PriceTrendLarge from "../components/search/PriceTrendLarge";
+import "./SearchStocksPage.css";
 
 function SearchStocksPage() {
   const [symbol, setSymbol] = useState("");
@@ -30,7 +26,7 @@ function SearchStocksPage() {
   };
 
   return (
-    <Box sx={{ p: 4 }}>
+    <Box className="search-page-container">
       <SearchHero 
         symbol={symbol} 
         setSymbol={setSymbol} 
@@ -38,10 +34,10 @@ function SearchStocksPage() {
         loading={loading}
       />
       
-      {error && <Alert severity="error" sx={{ mb: 4 }}>{error}</Alert>}
+      {error && <Alert severity="error" className="search-error-alert">{error}</Alert>}
       
       {loading && (
-        <Box sx={{ display: 'flex', justifyContent: 'center', my: 10 }}>
+        <Box className="search-loading-box">
           <CircularProgress color="inherit" />
         </Box>
       )}

@@ -1,0 +1,58 @@
+.profile-header-container {
+  text-align: center !important;
+  margin-bottom: 48px !important; /* mb: 6 */
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 16px !important; /* gap: 2 */
+}
+
+.avatar-wrapper {
+  position: relative !important;
+}
+
+.profile-avatar {
+  width: 110px !important;
+  height: 110px !important;
+  background-color: var(--brand-color) !important;
+  color: white !important;
+  font-size: 3rem !important;
+  cursor: pointer !important;
+  transition: opacity 0.2s !important;
+}
+
+.profile-avatar:hover {
+  opacity: 0.85 !important;
+}
+
+.avatar-edit-btn {
+  position: absolute !important;
+  bottom: 0 !important;
+  right: 0 !important;
+  background-color: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+  padding: 6px !important;
+}
+
+.avatar-edit-btn:hover {
+  background-color: #f8fafc !important;
+}
+
+.camera-icon {
+  font-size: 18px !important;
+  color: #64748b !important;
+}
+
+.profile-info-display {
+  text-align: center !important;
+}
+
+.profile-info-username {
+  font-weight: 700 !important;
+  color: #1e293b !important;
+}
+
+.profile-info-email {
+  color: #64748b !important;
+  margin-top: 4px !important; /* mt: 0.5 */
+}

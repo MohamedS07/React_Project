@@ -1,0 +1,14 @@
+.search-page-container {
+  padding: 32px !important; /* p: 4 */
+}
+
+.search-error-alert {
+  margin-bottom: 32px !important; /* mb: 4 */
+}
+
+.search-loading-box {
+  display: flex !important;
+  justify-content: center !important;
+  margin-top: 80px !important; /* my: 10 (top/bottom) */
+  margin-bottom: 80px !important;
+}

@@ -1,0 +1,10 @@
+.market-trend-chart-loading {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  height: 300px !important;
+}
+
+.market-trend-chart-wrapper {
+  margin-top: 16px !important; /* mt: 2 */
+}

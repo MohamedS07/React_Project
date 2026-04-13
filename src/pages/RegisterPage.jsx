@@ -3,19 +3,13 @@ import Box from "@mui/material/Box";
 import { Container } from "@mui/material";
 import BackgroundVideo from "../components/Background/BackgroundVideo";
 import RegisterCard from "../components/register/RegisterCard";
+import "../pages/LoginPage.css";
 
 function RegisterPage() {
   return (
     <BackgroundVideo>
-      <Box
-        sx={{
-          minHeight: "100vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <Container maxWidth="xs" sx={{ transition: 'all 0.5s ease' }}>
+      <Box className="login-page-video-overlay">
+        <Container maxWidth="xs" className="login-page-container">
           <RegisterCard />
         </Container>
       </Box>

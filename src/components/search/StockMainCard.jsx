@@ -1,7 +1,4 @@
-import React from 'react';
-import { Card, Box, Typography, Button, Divider, Chip } from '@mui/material';
-import { Business, TrendingUp } from '@mui/icons-material';
-import StockStatsGrid from './StockStatsGrid';
+import "./StockMainCard.css";
 
 const StockMainCard = ({ data }) => {
     if (!data) return null;
@@ -9,44 +6,28 @@ const StockMainCard = ({ data }) => {
     const isPositive = parseFloat(data.change) >= 0;
 
     return (
-        <Card sx={{ 
-            borderRadius: '24px', 
-            border: '1px solid var(--neutral-200)', 
-            boxShadow: '0 4px 20px -10px rgba(0,0,0,0.1)', 
-            p: 4, 
-            height: '400px',
-            bgcolor: 'white',
-            position: 'relative'
-        }}>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 4 }}>
-                <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-                    <Box sx={{ 
-                        width: 64, 
-                        height: 64, 
-                        borderRadius: '16px', 
-                        display: 'flex', 
-                        alignItems: 'center', 
-                        justifyContent: 'center',
-                        color: 'black' 
-                    }}>
-                        <Business sx={{ fontSize: 32 }} />
+        <Card className="stock-main-card">
+            <Box className="stock-main-header">
+                <Box className="stock-main-info">
+                    <Box className="stock-icon-container">
+                        <Business className="stock-icon-large" />
                     </Box>
                     <Box>
-                        <Typography variant="h5" fontWeight="800" sx={{ color: 'var(--neutral-900)', letterSpacing: '-0.5px' }}>
+                        <Typography variant="h5" className="stock-title-text">
                             {data.name || data.symbol}
                         </Typography>
-                        <Box sx={{ display: 'flex', gap: 1, mt: 0.5, alignItems: 'center' }}>
-                            <Chip label={data.symbol} size="small" sx={{ fontWeight: 700, bgcolor: 'var(--neutral-100)', color: 'var(--neutral-700)' }} />
-                            <Chip label={data.exchange} size="small" variant="outlined" sx={{ fontWeight: 600, color: 'var(--neutral-500)' }} />
+                        <Box className="stock-chips-container">
+                            <Chip label={data.symbol} size="small" className="stock-chip-symbol" />
+                            <Chip label={data.exchange} size="small" variant="outlined" className="stock-chip-exchange" />
                         </Box>
                     </Box>
                 </Box>
 
-                <Box sx={{ textAlign: 'right' }}>
-                    <Typography variant="h4" fontWeight="800" sx={{ color: 'var(--neutral-900)' }}>
+                <Box className="stock-price-display">
+                    <Typography variant="h4" className="stock-price-text">
                         ${parseFloat(data.close).toFixed(2)}
                     </Typography>
-                    <Typography variant="body1" fontWeight="700" sx={{ color: isPositive ? '#10b981' : '#ef4444', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 0.5 }}>
+                    <Typography variant="body1" className={`stock-change-text ${isPositive ? 'change-positive' : 'change-negative'}`}>
                         {isPositive ? '+' : ''}{parseFloat(data.change).toFixed(2)} ({data.percent_change}%)
                     </Typography>
                 </Box>
@@ -54,10 +35,10 @@ const StockMainCard = ({ data }) => {
 
             <StockStatsGrid data={data} />
 
-            <Divider sx={{ mb: 4, borderColor: 'var(--neutral-100)' }} />
+            <Divider className="stock-main-divider" />
 
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-                <Typography variant="body2" sx={{ color: 'var(--neutral-500)', maxWidth: '60%', fontStyle: 'italic', lineHeight: 1.6 }}>
+            <Box className="stock-footer">
+                <Typography variant="body2" className="stock-market-status">
                     Market Status: {data.is_market_open ? 'Open' : 'Closed'}
                 </Typography>
             </Box>

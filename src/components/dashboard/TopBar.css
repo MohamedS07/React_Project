@@ -1,0 +1,68 @@
+.topbar-container {
+  height: 70px !important;
+  background-color: white !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 0 32px !important; /* px: 4 in MUI is 32px */
+  border-bottom: 1px solid var(--neutral-100) !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 100 !important;
+}
+
+.topbar-search-box {
+  width: 400px !important;
+}
+
+.topbar-search-icon {
+  color: var(--neutral-400) !important;
+  font-size: 20px !important;
+}
+
+.topbar-search-input .MuiOutlinedInput-root {
+  background-color: var(--neutral-50) !important;
+  border-radius: 12px !important;
+  font-size: 0.85rem !important;
+}
+
+.topbar-search-input .MuiOutlinedInput-root fieldset {
+  border: none !important;
+}
+
+.topbar-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 24px !important; /* gap: 3 in MUI is 24px */
+}
+
+.topbar-notification-btn {
+  color: var(--neutral-500) !important;
+}
+
+.topbar-user-profile {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important; /* gap: 1.5 in MUI is 12px */
+}
+
+.topbar-user-info {
+  text-align: right !important;
+}
+
+.topbar-username {
+  color: var(--neutral-900) !important;
+  line-height: 1.2 !important;
+  font-weight: 700 !important;
+}
+
+.topbar-user-role {
+  color: var(--neutral-400) !important;
+  font-weight: 600 !important;
+}
+
+.topbar-avatar {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 10px !important;
+}

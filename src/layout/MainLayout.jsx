@@ -2,18 +2,15 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import SideBar from '../components/dashboard/Sidebar';
 import { Box } from '@mui/material';
+import "./MainLayout.css";
 
 function MainLayout() {
     return (
-        <Box sx={{ display: 'flex', minHeight: '100vh', bgcolor: '#fdfdff' }}>
+        <Box className="main-layout-container">
             <SideBar />
             <Box
                 component="main"
-                sx={{
-                    flexGrow: 1,
-                    width: 'calc(100% - 240px)',
-                    overflow: 'hidden'
-                }}
+                className="main-content-area"
             >
                 <Outlet />
             </Box>

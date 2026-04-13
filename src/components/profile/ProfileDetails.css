@@ -1,0 +1,49 @@
+.profile-details-card {
+  padding: 32px !important; /* p: 4 */
+  border-radius: 20px !important;
+  border: 1px solid var(--border-light) !important;
+  box-shadow: 0 4px 6px -1px var(--neutral-100) !important;
+  max-width: 600px !important;
+  margin: 0 auto !important;
+}
+
+.profile-section-title {
+  color: var(--text-primary) !important;
+  margin-bottom: 24px !important; /* mb: 3 */
+  font-weight: 800 !important;
+}
+
+.profile-form-container {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important; /* gap: 2.5 (20px) */
+}
+
+.profile-field-label {
+  color: var(--text-secondary) !important;
+  margin-bottom: 4px !important; /* mb: 0.5 */
+  display: block !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  font-weight: 700 !important;
+}
+
+.profile-textfield .MuiOutlinedInput-root {
+  border-radius: 10px !important;
+}
+
+.profile-submit-btn {
+  border-radius: 10px !important;
+  padding: 12px 0 !important; /* py: 1.5 (12px) */
+  background-color: black !important;
+  text-transform: none !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 6px -1px var(--primary-100) !important;
+  transition: all 0.2s !important;
+  color: white !important;
+}
+
+.profile-submit-btn:hover {
+  transform: translateY(-1px) !important;
+  background-color: #333 !important;
+}

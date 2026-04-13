@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
+import "./RegisterCard.css";
+
 const RegisterCard = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -57,24 +59,13 @@ const RegisterCard = () => {
   });
 
   return (
-    <Card
-      sx={{
-        borderRadius: '24px',
-        p: 1.5,
-        background: "rgba(255, 255, 255, 0.15)",
-        backdropFilter: "blur(18px) saturate(160%)",
-        border: "1px solid rgba(255, 255, 255, 0.3)",
-        boxShadow: "0 15px 35px rgba(0, 0, 0, 0.4)",
-        color: "#fff",
-        overflow: 'visible'
-      }}
-    >
+    <Card className="register-card">
       <CardContent>
         <Box textAlign="center" mb={4}>
-          <Typography variant="h4" fontWeight="800" sx={{ color: "#fff", letterSpacing: '-1px' }}>
+          <Typography variant="h4" className="register-title">
             StockVision
           </Typography>
-          <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.8)", mt: 1 }}>
+          <Typography variant="body2" className="register-subtitle">
             Join the elite circle of investors.
           </Typography>
         </Box>
@@ -93,16 +84,7 @@ const RegisterCard = () => {
               onBlur={formik.handleBlur}
               error={formik.touched.username && Boolean(formik.errors.username)}
               helperText={formik.touched.username && formik.errors.username}
-              sx={{
-                '& .MuiOutlinedInput-root': {
-                  color: '#fff',
-                  backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                  borderRadius: '12px',
-                  '& fieldset': { borderColor: 'rgba(255, 255, 255, 0.2)' },
-                },
-                '& .MuiInputLabel-root': { color: 'rgba(255, 255, 255, 0.7)' },
-                '& .MuiFormHelperText-root': { color: '#ff8a80' }
-              }}
+              className="register-textfield"
             />
             <TextField 
               name="email"
@@ -114,16 +96,7 @@ const RegisterCard = () => {
               onBlur={formik.handleBlur}
               error={formik.touched.email && Boolean(formik.errors.email)}
               helperText={formik.touched.email && formik.errors.email}
-              sx={{
-                '& .MuiOutlinedInput-root': {
-                  color: '#fff',
-                  backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                  borderRadius: '12px',
-                  '& fieldset': { borderColor: 'rgba(255, 255, 255, 0.2)' },
-                },
-                '& .MuiInputLabel-root': { color: 'rgba(255, 255, 255, 0.7)' },
-                '& .MuiFormHelperText-root': { color: '#ff8a80' }
-              }}
+              className="register-textfield"
             />
             <TextField 
               name="password"
@@ -135,29 +108,14 @@ const RegisterCard = () => {
               onBlur={formik.handleBlur}
               error={formik.touched.password && Boolean(formik.errors.password)}
               helperText={formik.touched.password && formik.errors.password}
-              sx={{
-                '& .MuiOutlinedInput-root': {
-                  color: '#fff',
-                  backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                  borderRadius: '12px',
-                  '& fieldset': { borderColor: 'rgba(255, 255, 255, 0.2)' },
-                },
-                '& .MuiInputLabel-root': { color: 'rgba(255, 255, 255, 0.7)' },
-                '& .MuiFormHelperText-root': { color: '#ff8a80' }
-              }}
+              className="register-textfield"
             />
             <Button
               type="submit"
               variant="contained"
               size="large"
               disabled={loading}
-              sx={{
-                mt: 2,
-                py: 1.5,
-                borderRadius: '12px',
-                fontWeight: "700",
-                background: 'linear-gradient(135deg, var(--primary-500), var(--primary-700))',
-              }}
+              className="register-button"
               fullWidth
             >
               {loading ? "Creating Account..." : "Create Account"}
@@ -166,13 +124,9 @@ const RegisterCard = () => {
         </form>
 
         <Box textAlign="center" mt={4}>
-          <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.7)" }}>
+          <Typography variant="body2" className="register-footer-text">
             Already have an account? {' '}
-            <Link to="/login" style={{ 
-              color: 'var(--primary-300)', 
-              fontWeight: 700, 
-              textDecoration: 'none',
-            }}>
+            <Link to="/login" className="register-footer-link">
               Sign In
             </Link>
           </Typography>
@@ -181,5 +135,6 @@ const RegisterCard = () => {
     </Card>
   );
 };
+
 
 export default RegisterCard;

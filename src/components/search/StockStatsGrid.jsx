@@ -1,27 +1,25 @@
-import React from 'react';
-import { Grid, Box, Typography } from '@mui/material';
-import { TrendingUp, TrendingDown, Equalizer, Assessment } from '@mui/icons-material';
+import "./StockStatsGrid.css";
 
 const StockStatsGrid = ({ data }) => {
     const stats = [
-        { label: 'DAY HIGH', value: `$${parseFloat(data.high).toFixed(2)}`, icon: <TrendingUp sx={{ fontSize: 16, color: 'var(--neutral-400)' }} /> },
-        { label: 'DAY LOW', value: `$${parseFloat(data.low).toFixed(2)}`, icon: <TrendingDown sx={{ fontSize: 16, color: 'var(--neutral-400)' }} /> },
-        { label: 'VOLUME', value: parseInt(data.volume).toLocaleString(), icon: <Equalizer sx={{ fontSize: 16, color: 'var(--neutral-400)' }} /> },
-        { label: 'OPEN', value: `$${parseFloat(data.open).toFixed(2)}`, icon: <Assessment sx={{ fontSize: 16, color: 'var(--neutral-400)' }} /> },
+        { label: 'DAY HIGH', value: `$${parseFloat(data.high).toFixed(2)}`, icon: <TrendingUp className="stat-icon-small" /> },
+        { label: 'DAY LOW', value: `$${parseFloat(data.low).toFixed(2)}`, icon: <TrendingDown className="stat-icon-small" /> },
+        { label: 'VOLUME', value: parseInt(data.volume).toLocaleString(), icon: <Equalizer className="stat-icon-small" /> },
+        { label: 'OPEN', value: `$${parseFloat(data.open).toFixed(2)}`, icon: <Assessment className="stat-icon-small" /> },
     ];
 
     return (
-        <Grid container spacing={2} sx={{ mb: 4 }}>
+        <Grid container spacing={2} className="stock-stats-grid-container">
             {stats.map((stat, idx) => (
                 <Grid item xs={6} sm={3} key={idx}>
-                    <Box sx={{ p: 2, borderRadius: '16px', border: '1px solid var(--neutral-100)', bgcolor: 'var(--neutral-50)' }}>
-                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                    <Box className="stat-box">
+                        <Box className="stat-header">
                             {stat.icon}
-                            <Typography variant="caption" fontWeight="800" sx={{ color: 'var(--neutral-500)', letterSpacing: '0.05em' }}>
+                            <Typography variant="caption" className="stat-label-text">
                                 {stat.label}
                             </Typography>
                         </Box>
-                        <Typography variant="h6" fontWeight="800" sx={{ color: 'var(--neutral-900)' }}>
+                        <Typography variant="h6" className="stat-value-text">
                             {stat.value}
                         </Typography>
                     </Box>

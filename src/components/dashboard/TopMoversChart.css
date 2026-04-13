@@ -1,0 +1,64 @@
+.top-movers-chart-loading {
+  display: flex !important;
+  justify-content: center !important;
+  padding: 32px !important; /* p: 4 */
+}
+
+.top-movers-list {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.mover-item {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 12px !important; /* p: 1.5 */
+  border-radius: 8px !important; /* borderRadius: 2 */
+  border: 1px solid #eee !important;
+}
+
+.mover-info {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important; /* gap: 1.5 */
+}
+
+.mover-avatar {
+  width: 32px !important;
+  height: 32px !important;
+  background-color: var(--neutral-100) !important;
+  color: black !important;
+  font-size: 0.8rem !important;
+  font-weight: 700 !important;
+}
+
+.mover-symbol {
+  font-weight: 600 !important;
+}
+
+.mover-price {
+  color: var(--text-secondary) !important;
+}
+
+.mover-trend {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important; /* gap: 0.5 */
+}
+
+.trend-icon {
+  font-size: 18px !important;
+}
+
+.trend-text {
+  font-weight: 600 !important;
+}
+
+.trend-up {
+  color: green !important;
+}
+
+.trend-down {
+  color: red !important;
+}

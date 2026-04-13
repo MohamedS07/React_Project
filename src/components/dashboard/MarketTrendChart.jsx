@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from "react";
-import Chart from "react-apexcharts";
-import { Box, CircularProgress } from "@mui/material";
+import "./MarketTrendChart.css";
 
 function MarketTrendChart() {
   const [series, setSeries] = useState([{ data: [] }]);
@@ -64,14 +62,14 @@ function MarketTrendChart() {
 
   if (loading) {
     return (
-      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 300 }}>
+      <Box className="market-trend-chart-loading">
         <CircularProgress size={24} color="inherit" />
       </Box>
     );
   }
 
   return (
-    <Box sx={{ mt: 2 }}>
+    <Box className="market-trend-chart-wrapper">
       <Chart
         options={options}
         series={series}

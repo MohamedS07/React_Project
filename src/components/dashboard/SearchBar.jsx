@@ -1,17 +1,14 @@
-import React from 'react';
-import { Box } from '@mui/material';
-import { TextField } from '@mui/material';
-import {InputAdornment} from '@mui/material'
-import SearchIcon from '@mui/icons-material/Search';
+import "./SearchBar.css";
 
 function SearchBar() {
   return (
-    <Box sx={{ mb: 3 }}>
+    <Box className="search-bar-container">
       <TextField
         fullWidth
         variant="outlined"
         placeholder="Search..."
         size="small"
+        className="search-field"
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
@@ -19,7 +16,6 @@ function SearchBar() {
             </InputAdornment>
           ),
         }}
-        sx={{ maxWidth: 400 }}
       />
     </Box>
   );

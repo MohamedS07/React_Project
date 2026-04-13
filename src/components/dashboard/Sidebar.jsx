@@ -2,27 +2,18 @@ import React from "react";
 import { Box, Typography, List, ListItemButton, ListItemText, ListItemIcon } from "@mui/material";
 import { Dashboard, Search, Person } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-
+import "./Sidebar.css";
 
 function SideBar() {
     return (
-        <Box
-            sx={{
-                width: 240,
-                height: "100vh",
-                bgcolor: "var(--bg-sidebar)",
-                borderRight: "1px solid var(--border-light)",
-                display: "flex",
-                flexDirection: "column",
-            }}
-        >
-            <Box sx={{ p: 3, borderBottom: '1px solid var(--border-light)' }}>
-                <Typography variant="h5" fontWeight="800" sx={{ color: '#000000', letterSpacing: '-0.5px' }}>
+        <Box className="sidebar-container">
+            <Box className="sidebar-header">
+                <Typography variant="h5" className="sidebar-logo-text">
                     StockVision
                 </Typography>
             </Box>
 
-            <List sx={{ px: 1, py: 2 }}>
+            <List className="sidebar-list">
                 {[
                     { text: "Dashboard", icon: <Dashboard />, to: "/" },
                     { text: "Search Stocks", icon: <Search />, to: "/search" },
@@ -32,25 +23,15 @@ function SideBar() {
                         key={item.text} 
                         component={Link} 
                         to={item.to}
-                        sx={{
-                            borderRadius: '12px',
-                            mb: 0.5,
-                            transition: 'all 0.2s',
-                            '&:hover': {
-                                bgcolor: '',
-                                '& .MuiListItemIcon-root': { color: '#000000' }
-                            },
-                        }}
+                        className="sidebar-item-button"
                     >
-                        <ListItemIcon sx={{ minWidth: 40, color: 'var(--neutral-500)' }}>
+                        <ListItemIcon className="sidebar-item-icon">
                             {item.icon}
                         </ListItemIcon>
                         <ListItemText 
                             primary={item.text} 
                             primaryTypographyProps={{ 
-                                fontWeight: 500,
-                                fontSize: '0.9rem',
-                                color: '#000000'
+                                className: "sidebar-item-text-primary"
                             }} 
                         />
                     </ListItemButton>

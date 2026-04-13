@@ -5,6 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
+import "./LoginCard.css";
+
 const LoginCard = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -53,24 +55,13 @@ const LoginCard = () => {
   });
 
   return (
-    <Card
-      sx={{
-        borderRadius: '24px',
-        p: 1.5,
-        background: "rgba(255, 255, 255, 0.15)", 
-        backdropFilter: "blur(18px) saturate(160%)",
-        border: "1px solid rgba(255, 255, 255, 0.3)",
-        boxShadow: "0 15px 35px rgba(0, 0, 0, 0.4)",
-        color: "#fff",
-        overflow: 'visible'
-      }}
-    >
+    <Card className="login-card">
       <CardContent>
         <Box textAlign="center" mb={4}>
-          <Typography variant="h4" fontWeight="800" sx={{ color: "#fff", letterSpacing: '-1px' }}>
+          <Typography variant="h4" className="login-title">
             StockVision
           </Typography>
-          <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.8)", mt: 1 }}>
+          <Typography variant="body2" className="login-subtitle">
             Welcome back, Analyst.
           </Typography>
         </Box>
@@ -89,16 +80,7 @@ const LoginCard = () => {
               onBlur={formik.handleBlur}
               error={formik.touched.email && Boolean(formik.errors.email)}
               helperText={formik.touched.email && formik.errors.email}
-              sx={{
-                '& .MuiOutlinedInput-root': {
-                  color: '#fff',
-                  backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                  borderRadius: '12px',
-                  '& fieldset': { borderColor: 'rgba(255, 255, 255, 0.2)' },
-                },
-                '& .MuiInputLabel-root': { color: 'rgba(255, 255, 255, 0.7)' },
-                '& .MuiFormHelperText-root': { color: '#ff8a80' }
-              }}
+              className="login-textfield"
             />
             <TextField 
               name="password"
@@ -110,29 +92,14 @@ const LoginCard = () => {
               onBlur={formik.handleBlur}
               error={formik.touched.password && Boolean(formik.errors.password)}
               helperText={formik.touched.password && formik.errors.password}
-              sx={{
-                '& .MuiOutlinedInput-root': {
-                  color: '#fff',
-                  backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                  borderRadius: '12px',
-                  '& fieldset': { borderColor: 'rgba(255, 255, 255, 0.2)' },
-                },
-                '& .MuiInputLabel-root': { color: 'rgba(255, 255, 255, 0.7)' },
-                '& .MuiFormHelperText-root': { color: '#ff8a80' }
-              }}
+              className="login-textfield"
             />
             <Button
               type="submit"
               variant="contained"
               size="large"
               disabled={loading}
-              sx={{
-                mt: 2,
-                py: 1.5,
-                borderRadius: '12px',
-                fontWeight: "700",
-                background: 'linear-gradient(135deg, var(--primary-500), var(--primary-700))',
-              }}
+              className="login-button"
               fullWidth
             >
               {loading ? "Signing in..." : "Sign In"}
@@ -141,13 +108,9 @@ const LoginCard = () => {
         </form>
 
         <Box textAlign="center" mt={4}>
-          <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.7)" }}>
+          <Typography variant="body2" className="login-footer-text">
             Don't have an account? {' '}
-            <Link to="/register" style={{ 
-              color: 'var(--primary-300)', 
-              fontWeight: 700, 
-              textDecoration: 'none',
-            }}>
+            <Link to="/register" className="login-footer-link">
               Join us now
             </Link>
           </Typography>

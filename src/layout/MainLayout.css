@@ -1,0 +1,11 @@
+.main-layout-container {
+  display: flex !important;
+  min-height: 100vh !important;
+  background-color: #fdfdff !important;
+}
+
+.main-content-area {
+  flex-grow: 1 !important;
+  width: calc(100% - 240px) !important;
+  overflow: hidden !important;
+}

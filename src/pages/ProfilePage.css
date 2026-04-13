@@ -1,0 +1,34 @@
+.profile-page-wrapper {
+  background-color: var(--bg-main) !important;
+  min-height: 100vh !important;
+  padding-bottom: 64px !important; /* pb: 8 */
+}
+
+.profile-search-section {
+  padding: 32px !important; /* p: 4 */
+}
+
+.profile-container {
+  margin-top: 16px !important; /* mt: 2 */
+}
+
+.profile-settings-header {
+  margin-bottom: 48px !important; /* mb: 6 */
+  text-align: center !important;
+}
+
+.profile-title {
+  font-weight: 800 !important;
+  color: var(--text-primary) !important;
+}
+
+.profile-subtitle {
+  color: var(--text-secondary) !important;
+  margin-top: 8px !important; /* mt: 1 */
+}
+
+.profile-loading {
+  display: flex !important;
+  justify-content: center !important;
+  margin-top: 32px !important; /* mt: 4 */
+}

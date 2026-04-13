@@ -4,6 +4,8 @@ import SearchBar from '../components/dashboard/SearchBar';
 import ProfileHeader from '../components/profile/ProfileHeader';
 import ProfileDetails from '../components/profile/ProfileDetails';
 
+import "./ProfilePage.css";
+
 function ProfilePage() {
     const [profile, setProfile] = useState({ username: '', email: '', phone: '', avatar: '' });
     const [loading, setLoading] = useState(true);
@@ -71,27 +73,23 @@ function ProfilePage() {
     };
 
     return (
-        <Box sx={{ 
-            bgcolor: 'var(--bg-main)', 
-            minHeight: '100vh',
-            pb: 8
-        }}>
-            <Box sx={{ p: 4 }}>
+        <Box className="profile-page-wrapper">
+            <Box className="profile-search-section">
                 <SearchBar />
             </Box>
 
-            <Container maxWidth="sm" sx={{ mt: 2 }}>
-                <Box sx={{ mb: 6, textAlign: 'center' }}>
-                    <Typography variant="h4" fontWeight="800" sx={{ color: 'var(--text-primary)' }}>
+            <Container maxWidth="sm" className="profile-container">
+                <Box className="profile-settings-header">
+                    <Typography variant="h4" className="profile-title">
                         Profile Settings
                     </Typography>
-                    <Typography variant="body2" sx={{ color: 'var(--text-secondary)', mt: 1 }}>
+                    <Typography variant="body2" className="profile-subtitle">
                         Manage your account and preferences
                     </Typography>
                 </Box>
 
                 {loading ? (
-                    <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}><CircularProgress /></Box>
+                    <Box className="profile-loading"><CircularProgress /></Box>
                 ) : error ? (
                     <Alert severity="error">{error}</Alert>
                 ) : (

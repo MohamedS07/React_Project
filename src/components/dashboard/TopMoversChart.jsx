@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Typography, Box, Avatar, Stack, CircularProgress } from "@mui/material";
 import { TrendingUp, TrendingDown } from "@mui/icons-material";
 
+import "./TopMoversChart.css";
+
 function TopMoversChart() {
   const [movers, setMovers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -37,7 +39,7 @@ function TopMoversChart() {
   }, []);
 
   if (loading) {
-    return <Box sx={{ display: 'flex', justifyContent: 'center', p: 4 }}><CircularProgress size={24} color="inherit" /></Box>;
+    return <Box className="top-movers-chart-loading"><CircularProgress size={24} color="inherit" /></Box>;
   }
 
   return (
@@ -52,36 +54,29 @@ function TopMoversChart() {
           return (
             <Box
               key={index}
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                p: 1.5,
-                borderRadius: 2,
-                border: "1px solid #eee"
-              }}
+              className="mover-item"
             >
-              <Box display="flex" alignItems="center" gap={1.5}>
-                <Avatar sx={{ width: 32, height: 32, bgcolor: 'var(--neutral-100)', color: 'black', fontSize: '0.8rem', fontWeight: 700 }}>
+              <Box className="mover-info">
+                <Avatar className="mover-avatar">
                   {stock.symbol?.[0]}
                 </Avatar>
 
                 <Box>
-                  <Typography fontWeight={600}>{stock.symbol}</Typography>
-                  <Typography variant="caption" color="text.secondary">
+                  <Typography className="mover-symbol">{stock.symbol}</Typography>
+                  <Typography variant="caption" className="mover-price">
                     ${parseFloat(stock.close).toFixed(2)}
                   </Typography>
                 </Box>
               </Box>
 
-              <Box display="flex" alignItems="center" gap={0.5}>
+              <Box className="mover-trend">
                 {isUp ? (
-                  <TrendingUp sx={{ color: "green", fontSize: 18 }} />
+                  <TrendingUp className={`trend-icon trend-up`} />
                 ) : (
-                  <TrendingDown sx={{ color: "red", fontSize: 18 }} />
+                  <TrendingDown className={`trend-icon trend-down`} />
                 )}
 
-                <Typography fontWeight={600} color={isUp ? "green" : "red"}>
+                <Typography className={`trend-text ${isUp ? "trend-up" : "trend-down"}`}>
                   {parseFloat(stock.percent_change).toFixed(2)}%
                 </Typography>
               </Box>

@@ -1,0 +1,48 @@
+.sidebar-container {
+  width: 240px !important;
+  height: 100vh !important;
+  background-color: var(--bg-sidebar) !important;
+  border-right: 1px solid var(--border-light) !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.sidebar-header {
+  padding: 24px !important;
+  border-bottom: 1px solid var(--border-light) !important;
+}
+
+.sidebar-logo-text {
+  color: #000000 !important;
+  letter-spacing: -0.5px !important;
+  font-weight: 800 !important;
+}
+
+.sidebar-list {
+  padding: 16px 8px !important;
+}
+
+.sidebar-item-button {
+  border-radius: 12px !important;
+  margin-bottom: 4px !important;
+  transition: all 0.2s !important;
+}
+
+.sidebar-item-button:hover {
+  background-color: rgba(0, 0, 0, 0.04) !important;
+}
+
+.sidebar-item-button:hover .MuiListItemIcon-root {
+  color: #000000 !important;
+}
+
+.sidebar-item-icon {
+  min-width: 40px !important;
+  color: var(--neutral-500) !important;
+}
+
+.sidebar-item-text-primary {
+  font-weight: 500 !important;
+  font-size: 0.9rem !important;
+  color: #000000 !important;
+}

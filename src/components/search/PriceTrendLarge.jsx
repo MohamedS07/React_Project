@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { Card, Box, Typography, Button, Stack, CircularProgress } from '@mui/material';
-import Chart from 'react-apexcharts';
+import "./PriceTrendLarge.css";
 
 function PriceTrendLarge({ symbol }) {
     const [timeframe, setTimeframe] = useState('1M');
@@ -92,34 +90,24 @@ function PriceTrendLarge({ symbol }) {
     };
 
     return (
-        <Box sx={{ mt: 4 }}>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', mb: 3 }}>
+        <Box className="price-trend-wrapper">
+            <Box className="price-trend-header">
                 <Box>
-                    <Typography variant="h5" fontWeight="800" sx={{ color: 'var(--neutral-900)' }}>
+                    <Typography variant="h5" className="price-trend-title">
                         Price Trend: {symbol}
                     </Typography>
-                    <Typography variant="body2" sx={{ color: 'var(--neutral-500)', mt: 0.5 }}>
+                    <Typography variant="body2" className="price-trend-subtitle">
                         Visualizing the historical price movement of {symbol}.
                     </Typography>
                 </Box>
                 
-                <Stack direction="row" spacing={0.5} sx={{ bgcolor: 'var(--neutral-100)', p: 0.5, borderRadius: '12px' }}>
+                <Stack direction="row" spacing={0.5} className="timeframe-stack">
                     {['1D', '1W', '1M', '1Y', 'ALL'].map((tf) => (
                         <Button
                             key={tf}
                             onClick={() => setTimeframe(tf)}
                             size="small"
-                            sx={{
-                                minWidth: '44px',
-                                borderRadius: '10px',
-                                textTransform: 'none',
-                                fontWeight: 700,
-                                fontSize: '0.75rem',
-                                color: timeframe === tf ? 'var(--neutral-900)' : 'var(--neutral-400)',
-                                bgcolor: timeframe === tf ? 'white' : 'transparent',
-                                boxShadow: timeframe === tf ? '0 2px 4px rgba(0,0,0,0.05)' : 'none',
-                                '&:hover': { bgcolor: timeframe === tf ? 'white' : 'rgba(0,0,0,0.05)' }
-                            }}
+                            className={`timeframe-btn ${timeframe === tf ? 'timeframe-btn-active' : 'timeframe-btn-inactive'}`}
                         >
                             {tf}
                         </Button>
@@ -127,22 +115,13 @@ function PriceTrendLarge({ symbol }) {
                 </Stack>
             </Box>
 
-            <Card sx={{
-                borderRadius: '24px',
-                border: '1px solid var(--neutral-200)',
-                bgcolor: 'white',
-                boxShadow: 'none',
-                height: '500px', // Fixed height for consistency
-                display: 'flex',
-                flexDirection: 'column',
-                overflow: 'hidden'
-            }}>
+            <Card className="chart-card">
                 {loading ? (
-                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', width: '100%' }}>
+                    <Box className="chart-loading-box">
                         <CircularProgress color="inherit" />
                     </Box>
                 ) : (
-                    <Box sx={{ p: 1, width: '100%', height: '100%' }}>
+                    <Box className="chart-container-box">
                         <Chart
                             options={chartData.options}
                             series={chartData.series}

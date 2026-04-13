@@ -1,0 +1,46 @@
+.search-hero-card {
+  padding: 12px !important; /* p: 1.5 (12px) */
+  display: flex !important;
+  gap: 16px !important; /* gap: 2 (16px) */
+  border-radius: 16px !important;
+  box-shadow: 0 4px 6px -3px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.05) !important;
+  border: 1px solid var(--neutral-200) !important;
+  margin-bottom: 32px !important; /* mb: 4 */
+  background-color: #ffffff !important;
+  height: 75px !important;
+}
+
+.search-hero-input .MuiOutlinedInput-root {
+  background-color: white !important;
+  border-radius: 12px !important;
+  height: 52px !important;
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+}
+
+.search-hero-input .MuiOutlinedInput-root fieldset {
+  border: none !important;
+}
+
+.search-hero-icon {
+  color: var(--neutral-400) !important;
+}
+
+.search-hero-btn {
+  background-color: black !important;
+  border-radius: 12px !important;
+  padding-left: 40px !important; /* px: 5 */
+  padding-right: 40px !important;
+  height: 52px !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+  font-size: 1rem !important;
+  box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.3) !important;
+  transition: all 0.2s !important;
+  color: white !important;
+}
+
+.search-hero-btn:hover {
+  background-color: var(--primary-600) !important;
+  transform: translateY(-1px) !important;
+}
