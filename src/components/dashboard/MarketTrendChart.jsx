@@ -9,7 +9,6 @@ function MarketTrendChart() {
   useEffect(() => {
     const fetchTrend = async () => {
       try {
-        // Fetch 30 days of SPY data
         const response = await fetch(`http://localhost:5000/api/stocks/time-series/SPY?interval=1day&outputsize=30`);
         const result = await response.json();
         

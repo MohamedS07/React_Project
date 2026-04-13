@@ -3,6 +3,8 @@ import { Box, TextField, InputAdornment, IconButton, Typography, Avatar, Badge }
 import { Search, NotificationsNone } from '@mui/icons-material';
 
 function TopBar() {
+    const username = localStorage.getItem('username') || 'Guest Analyst';
+
     return ( 
         <Box sx={{ 
             height: '70px', 
@@ -48,7 +50,7 @@ function TopBar() {
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                     <Box sx={{ textAlign: 'right' }}>
                         <Typography variant="body2" fontWeight="700" sx={{ color: 'var(--neutral-900)', lineHeight: 1.2 }}>
-                            Alex Rivers
+                            {username}
                         </Typography>
                         <Typography variant="caption" sx={{ color: 'var(--neutral-400)', fontWeight: 600 }}>
                             Investor

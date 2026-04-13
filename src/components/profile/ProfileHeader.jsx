@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { Box, Avatar, Typography, IconButton } from '@mui/material';
 import { CameraAlt as CameraIcon } from '@mui/icons-material';
 
-function ProfileHeader() {
+function ProfileHeader({ profile, onAvatarChange }) {
     const fileInputRef = useRef(null);
 
     const handleAvatarClick = () => {
@@ -12,8 +12,11 @@ function ProfileHeader() {
     const handleFileChange = (event) => {
         const file = event.target.files[0];
         if (file) {
-            console.log('Selected file:', file.name);
-            
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                onAvatarChange(reader.result);
+            };
+            reader.readAsDataURL(file);
         }
     };
 
@@ -28,16 +31,20 @@ function ProfileHeader() {
         }}>
             <Box sx={{ position: 'relative' }}>
                 <Avatar 
-                    src=""
+                    src={profile?.avatar}
                     sx={{ 
                         width: 110, 
                         height: 110, 
-                        bgcolor: '#f1f5f9',
+                        bgcolor: 'var(--brand-color)',
+                        color: 'white',
+                        fontSize: '3rem',
                         cursor: 'pointer',
                         '&:hover': { opacity: 0.85 }
                     }} 
                     onClick={handleAvatarClick}
-                />
+                >
+                    {profile?.username?.charAt(0)?.toUpperCase()}
+                </Avatar>
                 <IconButton 
                     onClick={handleAvatarClick}
                     sx={{ 
@@ -64,10 +71,10 @@ function ProfileHeader() {
             
             <Box>
                 <Typography variant="h5" fontWeight="700" sx={{ color: '#1e293b' }}>
-                    
+                    {profile?.username || "Investor"}
                 </Typography>
                 <Typography variant="body2" sx={{ color: '#64748b', mt: 0.5 }}>
-                    
+                    {profile?.email}
                 </Typography>
             </Box>
         </Box>

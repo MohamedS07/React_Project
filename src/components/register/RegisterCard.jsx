@@ -1,40 +1,60 @@
 import React, { useState } from "react";
 import { Box, Card, TextField, CardContent, Typography, Button, Stack, Alert } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 const RegisterCard = () => {
-  const [formData, setFormData] = useState({ username: '', email: '', password: '' });
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleRegister = async (e) => {
-    e.preventDefault();
-    if(loading) return;
-    setError('');
-    setSuccess('');
-    setLoading(true);
-    try {
-      const response = await fetch('http://localhost:5000/auth/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      });
-      const data = await response.json();
-      
-      if (response.ok) {
-        setSuccess('Registration successful! Redirecting to login...');
-        setTimeout(() => navigate('/login'), 2000);
-      } else {
-        setError(data.message || 'Registration failed');
+  const validationSchema = Yup.object({
+    username: Yup.string()
+      .min(3, 'Username must be at least 3 characters')
+      .required('Full Name is required'),
+    email: Yup.string()
+      .email('Invalid email address')
+      .required('Email is required'),
+    password: Yup.string()
+      .min(8, 'Password must be at least 8 characters')
+      .required('Password is required'),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      username: '',
+      email: '',
+      password: '',
+    },
+    validationSchema: validationSchema,
+    onSubmit: async (values) => {
+      if (loading) return;
+      setError('');
+      setSuccess('');
+      setLoading(true);
+      try {
+        const response = await fetch('http://localhost:5000/auth/signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(values)
+        });
+        const data = await response.json();
+        
+        if (response.ok) {
+          setSuccess('Registration successful! Redirecting to login...');
+          setTimeout(() => navigate('/login'), 2000);
+        } else {
+          setError(data.message || 'Registration failed');
+        }
+      } catch (err) {
+        setError('Server connection failed');
+      } finally {
+        setLoading(false);
       }
-    } catch (err) {
-      setError('Server connection failed');
-    } finally {
-      setLoading(false);
-    }
-  };
+    },
+  });
 
   return (
     <Card
@@ -62,55 +82,70 @@ const RegisterCard = () => {
         {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
         {success && <Alert severity="success" sx={{ mb: 2 }}>{success}</Alert>}
 
-        <form onSubmit={handleRegister}>
+        <form onSubmit={formik.handleSubmit}>
           <Stack spacing={2.5}>
             <TextField 
-            label="Full Name" 
-            fullWidth 
-            value={formData.username}
-            onChange={(e) => setFormData({...formData, username: e.target.value})}
-            sx={{
-              '& .MuiOutlinedInput-root': {
-                color: '#fff',
-                backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                borderRadius: '12px',
-                '& fieldset': { borderColor: 'rgba(255, 255, 255, 0.2)' },
-              },
-              '& .MuiInputLabel-root': { color: 'rgba(255, 255, 255, 0.7)' },
-            }}
-          />
-          <TextField 
-            label="Email Address" 
-            fullWidth 
-            type="email" 
-            value={formData.email}
-            onChange={(e) => setFormData({...formData, email: e.target.value})}
-            sx={{
-              '& .MuiOutlinedInput-root': {
-                color: '#fff',
-                backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                borderRadius: '12px',
-                '& fieldset': { borderColor: 'rgba(255, 255, 255, 0.2)' },
-              },
-              '& .MuiInputLabel-root': { color: 'rgba(255, 255, 255, 0.7)' },
-            }}
-          />
-          <TextField 
-            label="Password" 
-            fullWidth 
-            type="password" 
-            value={formData.password}
-            onChange={(e) => setFormData({...formData, password: e.target.value})}
-            sx={{
-              '& .MuiOutlinedInput-root': {
-                color: '#fff',
-                backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                borderRadius: '12px',
-                '& fieldset': { borderColor: 'rgba(255, 255, 255, 0.2)' },
-              },
-              '& .MuiInputLabel-root': { color: 'rgba(255, 255, 255, 0.7)' },
-            }}
-          />
+              name="username"
+              label="Full Name" 
+              fullWidth 
+              value={formik.values.username}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={formik.touched.username && Boolean(formik.errors.username)}
+              helperText={formik.touched.username && formik.errors.username}
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  color: '#fff',
+                  backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                  borderRadius: '12px',
+                  '& fieldset': { borderColor: 'rgba(255, 255, 255, 0.2)' },
+                },
+                '& .MuiInputLabel-root': { color: 'rgba(255, 255, 255, 0.7)' },
+                '& .MuiFormHelperText-root': { color: '#ff8a80' }
+              }}
+            />
+            <TextField 
+              name="email"
+              label="Email Address" 
+              fullWidth 
+              type="email" 
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={formik.touched.email && Boolean(formik.errors.email)}
+              helperText={formik.touched.email && formik.errors.email}
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  color: '#fff',
+                  backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                  borderRadius: '12px',
+                  '& fieldset': { borderColor: 'rgba(255, 255, 255, 0.2)' },
+                },
+                '& .MuiInputLabel-root': { color: 'rgba(255, 255, 255, 0.7)' },
+                '& .MuiFormHelperText-root': { color: '#ff8a80' }
+              }}
+            />
+            <TextField 
+              name="password"
+              label="Password" 
+              fullWidth 
+              type="password" 
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={formik.touched.password && Boolean(formik.errors.password)}
+              helperText={formik.touched.password && formik.errors.password}
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  color: '#fff',
+                  backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                  borderRadius: '12px',
+                  '& fieldset': { borderColor: 'rgba(255, 255, 255, 0.2)' },
+                },
+                '& .MuiInputLabel-root': { color: 'rgba(255, 255, 255, 0.7)' },
+                '& .MuiFormHelperText-root': { color: '#ff8a80' }
+              }}
+            />
             <Button
               type="submit"
               variant="contained"
@@ -137,7 +172,6 @@ const RegisterCard = () => {
               color: 'var(--primary-300)', 
               fontWeight: 700, 
               textDecoration: 'none',
-              '&:hover': { textDecoration: 'underline' }
             }}>
               Sign In
             </Link>
