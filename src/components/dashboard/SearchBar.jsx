@@ -1,3 +1,5 @@
+import { Box, TextField, InputAdornment } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 import "./SearchBar.css";
 
 function SearchBar() {

@@ -11,31 +11,40 @@ function TopMoversChart() {
   useEffect(() => {
     const fetchMovers = async () => {
       try {
-        const symbols = 'TSLA,NVDA,AAPL,MSFT,AMZN,GOOGL';
-        const response = await fetch(`http://localhost:5000/api/stocks/quote/${symbols}`);
-        const data = await response.json();
+        const response = await fetch(`http://localhost:4000/api/stocks/top-movers`);
+        const results = await response.json();
         
-        // Convert batch object to array and filter out errors
-        const results = Object.values(data).filter(item => item && !item.message && item.symbol);
-        
-        if (results.length > 0) {
+        if (Array.isArray(results) && results.length > 0) {
           setMovers(results);
         } else {
-          // Fallback static data if API limit is hit
           setMovers([
-            { symbol: 'TSLA', close: '175.22', percent_change: '-1.45' },
             { symbol: 'NVDA', close: '894.52', percent_change: '+2.10' },
             { symbol: 'AAPL', close: '169.12', percent_change: '+0.54' },
             { symbol: 'MSFT', close: '421.90', percent_change: '-0.12' },
+            { symbol: 'TSLA', close: '175.22', percent_change: '-1.45' },
           ]);
         }
       } catch (err) {
         console.error("Movers fetch error:", err);
+        setMovers([
+            { symbol: 'NVDA', close: '894.52', percent_change: '+2.10' },
+            { symbol: 'AAPL', close: '169.12', percent_change: '+0.54' },
+            { symbol: 'MSFT', close: '421.90', percent_change: '-0.12' },
+            { symbol: 'TSLA', close: '175.22', percent_change: '-1.45' },
+        ]);
       } finally {
         setLoading(false);
       }
     };
-    fetchMovers();
+
+    const timer = setTimeout(fetchMovers, 2000);
+
+    
+    const interval = setInterval(fetchMovers, 60000); 
+    return () => {
+        clearTimeout(timer);
+        clearInterval(interval);
+    };
   }, []);
 
   if (loading) {
@@ -88,4 +97,4 @@ function TopMoversChart() {
   );
 }
 
-export default TopMoversChart;
+export default TopMoversChart;

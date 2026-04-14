@@ -1,3 +1,5 @@
+import { Card, Typography } from "@mui/material";
+import TopMoversChart from "./TopMoversChart";
 import "./TopMoversBox.css";
 
 function TopMoversBox() {

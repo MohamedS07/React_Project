@@ -1,3 +1,6 @@
+import React from "react";
+import { Card, TextField, InputAdornment, Button, CircularProgress } from "@mui/material";
+import { Search } from "@mui/icons-material";
 import "./SearchHero.css";
 
 function SearchHero({ symbol, setSymbol, onSearch, loading }) {

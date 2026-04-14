@@ -1,3 +1,5 @@
+import { Card, Typography } from "@mui/material";
+import MarketTrendChart from "./MarketTrendChart";
 import "./MarketTrendBox.css";
 
 function MarketTrendBox() {

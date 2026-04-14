@@ -1,3 +1,6 @@
+import { Card, Box, Typography, Chip, Divider } from "@mui/material";
+import { Business } from "@mui/icons-material";
+import StockStatsGrid from "./StockStatsGrid";
 import "./StockMainCard.css";
 
 const StockMainCard = ({ data }) => {

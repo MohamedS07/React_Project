@@ -21,7 +21,7 @@ function DashBoardPage() {
     const fetchMarket = async () => {
       try {
         const symbols = 'SPY,NIFTY 50:NSE,NIFTYBEES:NSE';
-        const response = await fetch(`http://localhost:5000/api/stocks/quote/${symbols}`);
+        const response = await fetch(`http://localhost:4000/api/stocks/quote/${symbols}`);
         const data = await response.json();
         console.log("Dashboard Data:", data);
         
@@ -50,6 +50,9 @@ function DashBoardPage() {
       }
     };
     fetchMarket();
+
+    const pollId = setInterval(fetchMarket, 60000);
+    return () => clearInterval(pollId);
   }, []);
 
   if (loading) {
@@ -71,7 +74,7 @@ function DashBoardPage() {
       <Grid container spacing={3}>
         <DashboardSummary
           title="S&P 500 (US)"
-          value={marketData.spy?.close ? `$${parseFloat(marketData.spy.close).toFixed(2)}` : "$5,204.34"}
+          value={marketData.spy?.close ? `$${parseFloat(marketData.spy.close).toFixed(2)}` : "$5,204.35"}
           icon={<Public className="dashboard-icon-small" />}
           trend={marketData.spy?.percent_change || "+1.12"}
         />

@@ -14,7 +14,7 @@ function ProfilePage() {
     const fetchProfile = async () => {
         try {
             const token = localStorage.getItem('token');
-            const res = await fetch('http://localhost:5000/auth/profile', {
+            const res = await fetch('http://localhost:4000/auth/profile', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             const data = await res.json();
@@ -42,7 +42,7 @@ function ProfilePage() {
     const handleProfileUpdate = async (updatedData) => {
         try {
             const token = localStorage.getItem('token');
-            const res = await fetch('http://localhost:5000/auth/profile', {
+            const res = await fetch('http://localhost:4000/auth/profile', {
                 method: 'PUT',
                 headers: { 
                     'Content-Type': 'application/json',

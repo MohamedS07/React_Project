@@ -1,3 +1,5 @@
+import { Grid, Box, Typography } from "@mui/material";
+import { TrendingUp, TrendingDown, Equalizer, Assessment } from "@mui/icons-material";
 import "./StockStatsGrid.css";
 
 const StockStatsGrid = ({ data }) => {

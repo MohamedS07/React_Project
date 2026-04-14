@@ -1,3 +1,6 @@
+import { Grid } from "@mui/material";
+import StockMainCard from "./StockMainCard";
+import MarketInsightsCard from "./MarketInsightsCard";
 import "./StockOverview.css";
 
 function StockOverview({ data }) {

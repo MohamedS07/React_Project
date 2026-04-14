@@ -1,3 +1,5 @@
+import { Card, Box, Typography, Stack } from "@mui/material";
+import { AccessTime, TrendingUp } from "@mui/icons-material";
 import "./MarketInsightsCard.css";
 
 const MarketInsightsCard = ({ data }) => {
