@@ -28,8 +28,7 @@ function MarketTrendChart() {
         } else {
           throw new Error("Invalid API response");
         }
-      } catch (err) {
-        // Fallback realistic "live" intraday data for the chart if API fails
+      } catch (error) {
         const mockData = Array.from({ length: 40 }, (_, i) => {
             const date = new Date();
             date.setMinutes(date.getMinutes() - (40 - i) * 5); // 5-minute steps
