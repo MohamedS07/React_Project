@@ -14,6 +14,12 @@ function ProfilePage() {
     const fetchProfile = async () => {
         try {
             const token = localStorage.getItem('token');
+            if (!token) {
+                setError('You must be logged in to view this page.');
+                setLoading(false);
+                return;
+            }
+
             const res = await fetch('http://localhost:4000/auth/profile', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
@@ -26,10 +32,16 @@ function ProfilePage() {
                     avatar: data.avatar || ''
                 });
             } else {
+                // Now accurately captures the error message from the backend
                 setError(data.message || 'Failed to load profile');
+                
+                // If the token is invalid, clear it
+                if (res.status === 401) {
+                    localStorage.removeItem('token');
+                }
             }
         } catch (err) {
-            setError('Server connection failed');
+            setError('Server connection failed. Please ensure the backend is running.');
         } finally {
             setLoading(false);
         }
@@ -75,7 +87,7 @@ function ProfilePage() {
     return (
         <Box className="profile-page-wrapper">
             <Box className="profile-search-section">
-                <SearchBar />
+                
             </Box>
 
             <Container maxWidth="sm" className="profile-container">

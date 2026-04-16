@@ -8,11 +8,11 @@ import ProtectedRoute from "./ProtectedRoute";
 const router = createBrowserRouter([
     {
         path: "/",
-        element: (
+        element: localStorage.getItem('token') ? (
             <ProtectedRoute>
                 <MainLayout />
             </ProtectedRoute>
-        ),
+        ) : <RegisterPage />,
         children: mainRouters
     },
     {

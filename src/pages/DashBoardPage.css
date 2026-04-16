@@ -6,18 +6,43 @@
 }
 
 .dashboard-page-content {
-  padding: 24px !important;
+  padding: 32px 48px !important;
+  max-width: 1440px !important;
+  margin: 0 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.dashboard-top-nav {
+  margin-bottom: 32px !important;
+  display: flex !important;
+  justify-content: flex-start !important;
+}
+
+.dashboard-header-row {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: flex-end !important;
+  margin-bottom: 24px !important;
 }
 
 .dashboard-title {
   font-weight: 800 !important;
-  margin-bottom: 24px !important;
+  color: var(--text-primary) !important;
+  letter-spacing: -0.5px !important;
+  line-height: 1 !important;
+}
+
+.dashboard-date {
+  color: var(--text-secondary) !important;
+  font-weight: 500 !important;
+  opacity: 0.8 !important;
 }
 
 .dashboard-grid-spacing {
-  margin-top: 32px !important;
+  margin-top: 16px !important;
 }
 
 .dashboard-icon-small {
-  font-size: 18px !important;
+  font-size: 20px !important;
 }

@@ -1,8 +1,8 @@
 .market-trend-card {
   border-radius: 16px !important;
-  min-height: 360px !important;
-  width: 700px !important;
-  padding: 24px !important; /* p: 3 */
+  height: 480px !important;
+  width: 860px !important;
+  padding: 24px !important;
   box-shadow: none !important;
   border: 1px solid #e2e8f0 !important;
   background-color: white !important;

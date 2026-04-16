@@ -7,9 +7,8 @@ function MarketTrendBox() {
         <Card className="market-trend-card">
             <Typography variant="h6" className="market-trend-title">
                 Market Trend
-                <MarketTrendChart/>
             </Typography>
-            
+            <MarketTrendChart />
         </Card>
     );
 }
