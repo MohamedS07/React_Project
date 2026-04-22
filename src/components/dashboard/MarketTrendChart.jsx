@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Box, CircularProgress } from "@mui/material";
 import Chart from "react-apexcharts";
+import API_BASE_URL from "../../config";
 
 function MarketTrendChart() {
   const [series, setSeries] = useState([{ data: [] }]);
@@ -10,7 +11,7 @@ function MarketTrendChart() {
     const fetchTrend = async () => {
       try {
         const symbol = 'SPY';
-        const response = await fetch(`http://localhost:4000/api/stocks/time-series/${symbol}?interval=5min&outputsize=78`);
+        const response = await fetch(`${API_BASE_URL}/api/stocks/time-series/${symbol}?interval=5min&outputsize=78`);
         const result = await response.json();
         
         if (result && result.values) {

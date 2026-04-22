@@ -5,6 +5,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 import "./RegisterCard.css";
+import API_BASE_URL from "../../config";
 
 const RegisterCard = () => {
   const [error, setError] = useState('');
@@ -37,7 +38,7 @@ const RegisterCard = () => {
       setSuccess('');
       setLoading(true);
       try {
-        const response = await fetch('http://localhost:4000/auth/signup', {
+        const response = await fetch(`${API_BASE_URL}/auth/signup`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(values)

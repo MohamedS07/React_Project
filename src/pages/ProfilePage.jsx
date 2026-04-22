@@ -4,6 +4,8 @@ import SearchBar from '../components/dashboard/SearchBar';
 import ProfileHeader from '../components/profile/ProfileHeader';
 import ProfileDetails from '../components/profile/ProfileDetails';
 
+import API_BASE_URL from '../config';
+
 import "./ProfilePage.css";
 
 function ProfilePage() {
@@ -20,7 +22,7 @@ function ProfilePage() {
                 return;
             }
 
-            const res = await fetch('http://localhost:4000/auth/profile', {
+            const res = await fetch(`${API_BASE_URL}/auth/profile`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             const data = await res.json();
@@ -54,7 +56,7 @@ function ProfilePage() {
     const handleProfileUpdate = async (updatedData) => {
         try {
             const token = localStorage.getItem('token');
-            const res = await fetch('http://localhost:4000/auth/profile', {
+            const res = await fetch(`${API_BASE_URL}/auth/profile`, {
                 method: 'PUT',
                 headers: { 
                     'Content-Type': 'application/json',

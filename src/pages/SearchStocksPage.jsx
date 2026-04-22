@@ -4,6 +4,7 @@ import { Box, CircularProgress, Alert } from "@mui/material";
 import SearchHero from "../components/search/SearchHero";
 import StockOverview from "../components/search/StockOverview";
 import PriceTrendLarge from "../components/search/PriceTrendLarge";
+import API_BASE_URL from "../config";
 
 
 
@@ -18,7 +19,7 @@ function SearchStocksPage() {
     setLoading(true);
     setError("");
     try {
-      const response = await fetch(`http://localhost:4000/api/stocks/quote/${encodeURIComponent(symbol.trim())}`);
+      const response = await fetch(`${API_BASE_URL}/api/stocks/quote/${encodeURIComponent(symbol.trim())}`);
       const data = await response.json();
       if (response.ok) {
         setStockData(data);

@@ -1,27 +1,46 @@
 import React from "react";
-import { Card, TextField, InputAdornment, Button, CircularProgress } from "@mui/material";
+import { Card, TextField, InputAdornment, Button, CircularProgress, Autocomplete } from "@mui/material";
 import { Search } from "@mui/icons-material";
 import "./SearchHero.css";
+
+const commonStocks = [
+    "AAPL", "MSFT", "GOOGL", "NVDA", "TSLA", "AMZN", "META", "NFLX",
+    "JPM", "V", "WMT", "JNJ", "DIS", "PYPL", "AMD", "INTC", 
+    "BTC/USD", "ETH/USD", "EUR/USD", "RELIANCE", "INFY", "TCS"
+];
 
 function SearchHero({ symbol, setSymbol, onSearch, loading }) {
     return (
         <Card className="search-hero-card">
-            <TextField
-                fullWidth
-                placeholder="Enter stock symbol (e.g. AAPL, NVDA, TSLA)..."
-                variant="outlined"
-                size="small"
+            <Autocomplete
+                freeSolo
+                options={commonStocks}
                 value={symbol}
-                onChange={(e) => setSymbol(e.target.value.toUpperCase())}
-                onKeyPress={(e) => e.key === 'Enter' && onSearch()}
-                className="search-hero-input"
-                InputProps={{
-                    startAdornment: (
-                        <InputAdornment position="start">
-                            <Search className="search-hero-icon" />
-                        </InputAdornment>
-                    )
+                onChange={(event, newValue) => {
+                    setSymbol(newValue || "");
                 }}
+                onInputChange={(event, newInputValue) => {
+                    setSymbol(newInputValue.toUpperCase());
+                }}
+                fullWidth
+                renderInput={(params) => (
+                    <TextField
+                        {...params}
+                        placeholder="Enter stock symbol (e.g. AAPL, NVDA, TSLA)..."
+                        variant="outlined"
+                        size="small"
+                        onKeyPress={(e) => e.key === 'Enter' && onSearch()}
+                        className="search-hero-input"
+                        InputProps={{
+                            ...params.InputProps,
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <Search className="search-hero-icon" />
+                                </InputAdornment>
+                            )
+                        }}
+                    />
+                )}
             />
             <Button
                 variant="contained"

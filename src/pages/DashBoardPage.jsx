@@ -5,6 +5,7 @@ import MarketTrendBox from "../components/dashboard/MarketTrendBox";
 import TopMoversBox from "../components/dashboard/TopMoversBox";
 import { Typography, Grid, Box, CircularProgress } from "@mui/material";
 import { Public, TrendingUp, ShowChart, BarChart } from "@mui/icons-material";
+import API_BASE_URL from "../config";
 
 import "./DashBoardPage.css";
 
@@ -21,7 +22,7 @@ function DashBoardPage() {
     const fetchMarket = async () => {
       try {
         const symbols = 'SPY,NIFTY 50:NSE,NIFTYBEES:NSE';
-        const response = await fetch(`http://localhost:4000/api/stocks/quote/${symbols}`);
+        const response = await fetch(`${API_BASE_URL}/api/stocks/quote/${symbols}`);
         const data = await response.json();
         console.log("Dashboard Data:", data);
         

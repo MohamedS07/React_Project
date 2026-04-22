@@ -3,6 +3,7 @@ import { Typography, Box, Avatar, Stack, CircularProgress } from "@mui/material"
 import { TrendingUp, TrendingDown } from "@mui/icons-material";
 
 import "./TopMoversChart.css";
+import API_BASE_URL from "../../config";
 
 function TopMoversChart() {
   const [movers, setMovers] = useState([]);
@@ -11,7 +12,7 @@ function TopMoversChart() {
   useEffect(() => {
     const fetchMovers = async () => {
       try {
-        const response = await fetch(`http://localhost:4000/api/stocks/top-movers`);
+        const response = await fetch(`${API_BASE_URL}/api/stocks/top-movers`);
         const results = await response.json();
         
         if (Array.isArray(results) && results.length > 0) {

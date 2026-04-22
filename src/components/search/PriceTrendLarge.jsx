@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Box, Typography, Stack, Button, Card, CircularProgress } from "@mui/material";
 import Chart from "react-apexcharts";
 import "./PriceTrendLarge.css";
+import API_BASE_URL from "../../config";
 
 function PriceTrendLarge({ symbol }) {
     const [timeframe, setTimeframe] = useState('1M');
@@ -23,7 +24,7 @@ function PriceTrendLarge({ symbol }) {
             if (timeframe === 'ALL') { interval = '1month'; outputsize = '120'; }
 
             try {
-                const response = await fetch(`http://localhost:4000/api/stocks/time-series/${symbol}?interval=${interval}&outputsize=${outputsize}`);
+                const response = await fetch(`${API_BASE_URL}/api/stocks/time-series/${symbol}?interval=${interval}&outputsize=${outputsize}`);
                 const result = await response.json();
                 if (result && result.values) {
                     setData(result.values.reverse());
