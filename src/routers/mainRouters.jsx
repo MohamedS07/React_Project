@@ -4,7 +4,7 @@ import ProfilePage from '../pages/ProfilePage';
 
 const mainRouters = [
     {
-        path:"/",
+        index: true,
         element: <DashBoardPage />
     },
     {
