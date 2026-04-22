@@ -42,7 +42,7 @@ const LoginCard = () => {
         if (response.ok) {
           localStorage.setItem('token', data.token);
           localStorage.setItem('username', data.username);
-          navigate('/');
+          navigate('/dashboard');
         } else {
           setError(data.message || 'Login failed');
         }

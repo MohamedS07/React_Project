@@ -15,9 +15,9 @@ function SideBar() {
 
             <List className="sidebar-list">
                 {[
-                    { text: "Dashboard", icon: <Dashboard />, to: "/" },
-                    { text: "Search Stocks", icon: <Search />, to: "/search" },
-                    { text: "Profile", icon: <Person />, to: "/profile" },
+                    { text: "Dashboard", icon: <Dashboard />, to: "/dashboard" },
+                    { text: "Search Stocks", icon: <Search />, to: "/dashboard/search" },
+                    { text: "Profile", icon: <Person />, to: "/dashboard/profile" },
                 ].map((item) => (
                     <ListItemButton
                         key={item.text} 
