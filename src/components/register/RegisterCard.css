@@ -7,6 +7,7 @@
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4) !important;
   color: #fff !important;
   overflow: visible !important;
+  width: 400px;
 }
 
 .register-title {
